@@ -20,12 +20,14 @@
 
 title: masterofsome
 email: learnitallwithme@gmail.com
+author: Jack Torres
 #description: >- # this means to ignore newlines until "baseurl:"
 #  Welcome to my site!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 #github_username:  codingwatermelon
 youtube_username: "channel/UCqA6mCGNMsh84XOwV02N5Rw/videos"
+instagram_username: "masterofsome__"
 
 # Build settings
 #theme: minima

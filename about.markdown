@@ -6,6 +6,29 @@ permalink: /about/
 
 My name is Jack. I like doing cool stuff.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This site was built with Jekyll:
 
 You can find the source code for Minima at GitHub:
