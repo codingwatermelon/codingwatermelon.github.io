@@ -21,7 +21,9 @@ Another note: This guide is heavily borrowed from [this guide](http://emmanuelco
 - An [SD card reader](https://www.amazon.com/gp/product/B07S6GGFB1/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) (~18)
   - Note: You can get cheaper SD card readers but this one is useful for other things because it has additional USB ports.
 - A monitor
+  - Used to display the Magic Dashboard.
 - A separate computer
+  - Used to connect to the Raspberry Pi in order to configure it.
 
 ### Optional Parts
 - Mini HDMI to HDMI adapter
@@ -48,12 +50,12 @@ Another note: This guide is heavily borrowed from [this guide](http://emmanuelco
 2. Format your SD card with SD Card Formatter
 3. Flash the Raspberry Pi Raspbian Buster with Desktop image to your SD card with Etcher
   - *(Optional Step)* **If you don't have a Mini HDMI to HDMI adapter** or **if you don't want to configure the Pi via the desktop GUI** (i.e., a purely "headless" setup), you will want to add a couple of network configuration files to the `/boot` folder (accessible after you flash the image to the SD card) so that the Pi can connect to your network:
-  - (1) `wpa_supplicant.conf` - the WiFi [network configuration file](../files/wpa_supplicant.conf)
-  - (2) `ssh` - the SSH configuration file
-    - This file can just be an empty file named `ssh`; it basically just tells the Pi that it should turn on the SSH configuration so that you can remotely connect to it
+    - (1) `wpa_supplicant.conf` - the WiFi [network configuration file](../files/wpa_supplicant.conf)
+    - (2) `ssh` - the SSH configuration file
+      - This file can just be an empty file named `ssh`; it basically just tells the Pi that it should turn on the SSH configuration so that you can remotely connect to it
 4. Plug in the SD card to the Raspberry Pi, connect it to a monitor, then power it on
   - Note: If you set up SSH, connect to the Pi via SSH (using PuTTy for Windows or Terminal for MacOS)
-    - To find the IP address, you can use an [IP scanner](https://angryip.org/download/#windows)
+    - To find the IP address, you can use an IP Scanner like [Advanced IP Scanner](https://www.advanced-ip-scanner.com/)
 
 ***
 
@@ -62,7 +64,7 @@ Another note: This guide is heavily borrowed from [this guide](http://emmanuelco
   - `sudo raspi-config`
     - **Change Localisation Options**
       - **Change Locale**
-        - Select **enUS.UTF-8 UTF-8**
+        - Select **en US.UTF-8 UTF-8**
       - **Change timezone**
         - Select your timezone
       - **Change keyboard layout**
@@ -110,6 +112,7 @@ Another note: This guide is heavily borrowed from [this guide](http://emmanuelco
   - Note: You can create these files outside of the Pi and transfer them to your Pi using WinSCP. Otherwise, you can create them directly:
     - `sudo vim mmstart.sh`
       - [mmstart.sh](../files/mmstart.sh)
+
 {% highlight c %}
 #!/bin/bash
 cd ~/MagicMirror
@@ -117,8 +120,10 @@ node serveronly &
 sleep 30
 xinit /home/pi/chromium_start.sh
 {% endhighlight %}
+
     - `sudo vim chromium_start.sh`
       - [chromium_start.sh](../files/chromium_start.sh)
+
 {% highlight c %}
 #!/bin/sh
 unclutter &
@@ -128,20 +133,21 @@ xset s noblank # don’t blank the video device
 matchbox-window-manager &
 chromium-browser --incognito --kiosk http://localhost:8080/
 {% endhighlight %}
+
     - Allow files to be executed
       - `sudo chmod a+x mmstart.sh`
       - `sudo chmod a+x chromium_start.sh`
 
 7. Create automatic startup
   - Setup pm2
-      - `cd ~`
-      - `sudo npm install -g pm2`
-      - `pm2 startup`
-      - `pm2 start /home/pi/mmstart.sh`
-      - `pm2 save`
+      `cd ~`
+      `sudo npm install -g pm2`
+      `pm2 startup`
+      `pm2 start /home/pi/mmstart.sh`
+      `pm2 save`
 
   - To restart the MagicMirror service,
-      - `pm2 restart mmstart`
+      `pm2 restart mmstart`
 
 ***
 
@@ -172,21 +178,22 @@ var config = {
        - [MMM-BackgroundSlideshow](https://github.com/darickc/MMM-BackgroundSlideshow) - a module to display a picture in the background of the dashboard
        - [MMM-AVStock](https://github.com/lavolp3/MMM-AVStock) - a module used to display stock prices
   - To install modules, enter your `modules` folder
-        - `cd /home/pi/MagicMirror/modules`
+    - `cd /home/pi/MagicMirror/modules`
   - Clone the Github repository for the module you want to install
-        - `git clone <https://github.com/<module>`
-        - e.g., `git clone https://github.com/lavolp3/MMM-AVStock`
+    - `git clone <https://github.com/<module>`
+    - e.g., `git clone https://github.com/lavolp3/MMM-AVStock`
   - Install dependencies for any Node components in the module
-        - `cd <module>`
-        - e.g., `cd MMM-AVStock`
-        - `npm install`
+    - `cd <module>`
+      - e.g., `cd MMM-AVStock`
+    - `npm install`
 3. Configuring Modules
   - After installing, you'll need to edit the `config.js` file accordingly
         - The recommended configuration settings are usually included in the Github repository README file
   - Edit the `config.js` file
         - `vim /home/pi/MagicMirror/config/config.js`
   - Add any module configuration into the file, following the configuration structure
-        - For example,
+    - For example,
+
 {% highlight c %}
 {
   //disabled:true,
@@ -200,7 +207,7 @@ var config = {
 {% endhighlight %}
 
   - After finished with editing the file, restart the MagicMirror software
-        - `pm2 restart mmstart`
+    - `pm2 restart mmstart`
 4. Troubleshooting
   - Developer Tools is your friend
       - You can use developer tools to find syntax errors in the `config.js` file or to just figure out what a module is doing
@@ -210,4 +217,3 @@ var config = {
 
 ### My MagicMirror config file
 As promised, here's my MagicMirror config file (with personal information stripped). Hope that it helps you!
-
