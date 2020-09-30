@@ -154,7 +154,7 @@ chromium-browser --incognito --kiosk http://localhost:8080/
 ***
 
 ### MagicMirror Configuration
-#### --
+
 1. Networking
   - Allow your computer to connect to the Pi
   - In `~/MagicMirror/config/config.js` (either use `vim` or `nano` to edit directly or WinSCP to transfer the file here),
@@ -175,7 +175,7 @@ var config = {
       - If your MagicMirror doesn't come up, you have a problem with your networking or the MagicMirror software isn't started
       - **Note:** You should open the browser in Private or Incognito mode because I've found that in Firefox, it saves tons of trash data into the Firefox profiles folder if you don't which will quickly fill up your drive space.
 
-#### --
+{:start="2"}
 2. Installing Modules
   - [Click here](https://github.com/MichMich/MagicMirror/wiki/3rd-party-modules) for a list of all MagicMirror 3rd party modules
   - The 3rd party modules that I chose to use were:
@@ -194,7 +194,7 @@ var config = {
       - e.g., `cd MMM-AVStock`
     - `npm install`
 
-#### --
+{:start="3"}
 3. Configuring Modules
   - After installing, you'll need to edit the `config.js` file accordingly
         - The recommended configuration settings are usually included in the Github repository README file
@@ -218,7 +218,7 @@ var config = {
   - After finished with editing the file, restart the MagicMirror software
     - `pm2 restart mmstart`
 
-#### --
+{:start="4"}
 4. Troubleshooting
   - Developer Tools is your friend
       - You can use developer tools to find syntax errors in the `config.js` file or to just figure out what a module is doing
