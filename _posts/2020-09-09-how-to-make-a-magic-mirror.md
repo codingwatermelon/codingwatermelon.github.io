@@ -27,7 +27,7 @@ Another note: This guide is heavily borrowed from [this guide](http://emmanuelco
 
 ### Optional Parts
 - Mini HDMI to HDMI adapter
-  - This part is needed for the Raspberry Pi Zero in order to connect to a regular HDMI display so you can add the WiFi configuration via the desktop GUI. This part is not needed if you use add the WiFi configuration to the boot files on the SD card prior to boot up
+  - This part is needed for the Raspberry Pi Zero in order to connect to a regular HDMI display so you can add the WiFi configuration via the desktop GUI. This part is not needed if you add the WiFi configuration (wpa_supplicant.conf) to the boot files on the SD card prior to boot up
 
 ### Software Required
 - [SD Card Formatter](https://www.sdcard.org/downloads/formatter/)
@@ -110,8 +110,9 @@ Another note: This guide is heavily borrowed from [this guide](http://emmanuelco
 
 6. Create startup scripts
   - Note: You can create these files outside of the Pi and transfer them to your Pi using WinSCP. Otherwise, you can create them directly:
-    - `sudo vim mmstart.sh`
-      - [mmstart.sh](../files/mmstart.sh)
+
+`sudo vim mmstart.sh`
+[mmstart.sh](../files/mmstart.sh)
 
 {% highlight c %}
 #!/bin/bash
@@ -121,8 +122,8 @@ sleep 30
 xinit /home/pi/chromium_start.sh
 {% endhighlight %}
 
-    - `sudo vim chromium_start.sh`
-      - [chromium_start.sh](../files/chromium_start.sh)
+`sudo vim chromium_start.sh`
+[chromium_start.sh](../files/chromium_start.sh)
 
 {% highlight c %}
 #!/bin/sh
@@ -134,10 +135,11 @@ matchbox-window-manager &
 chromium-browser --incognito --kiosk http://localhost:8080/
 {% endhighlight %}
 
-    - Allow files to be executed
-      - `sudo chmod a+x mmstart.sh`
-      - `sudo chmod a+x chromium_start.sh`
+Allow files to be executed
+`sudo chmod a+x mmstart.sh`
+`sudo chmod a+x chromium_start.sh`
 
+{:start="7"}
 7. Create automatic startup
   - Setup pm2
       `cd ~`
@@ -152,7 +154,7 @@ chromium-browser --incognito --kiosk http://localhost:8080/
 ***
 
 ### MagicMirror Configuration
-1. Networking
+#### 1. Networking
   - Allow your computer to connect to the Pi
   - In `~/MagicMirror/config/config.js` (either use `vim` or `nano` to edit directly or WinSCP to transfer the file here),
 {% highlight c %}
@@ -169,7 +171,7 @@ var config = {
       - `http://<PiIPAddress>:8080`
       - If your MagicMirror doesn't come up, you have a problem with your networking or the MagicMirror software isn't started
       - **Note:** You should open the browser in Private or Incognito mode because I've found that in Firefox, it saves tons of trash data into the Firefox profiles folder if you don't which will quickly fill up your drive space.
-2. Installing Modules
+#### 2. Installing Modules
   - [Click here](https://github.com/MichMich/MagicMirror/wiki/3rd-party-modules) for a list of all MagicMirror 3rd party modules
   - The 3rd party modules that I chose to use were:
        - [MMM-MicrosoftToDo](https://github.com/thobach/MMM-MicrosoftToDo/) - a module to integrate your MS ToDo lists
@@ -186,7 +188,7 @@ var config = {
     - `cd <module>`
       - e.g., `cd MMM-AVStock`
     - `npm install`
-3. Configuring Modules
+#### 3. Configuring Modules
   - After installing, you'll need to edit the `config.js` file accordingly
         - The recommended configuration settings are usually included in the Github repository README file
   - Edit the `config.js` file
@@ -208,11 +210,14 @@ var config = {
 
   - After finished with editing the file, restart the MagicMirror software
     - `pm2 restart mmstart`
-    
-4. Troubleshooting
+
+#### 4. Troubleshooting
   - Developer Tools is your friend
       - You can use developer tools to find syntax errors in the `config.js` file or to just figure out what a module is doing
       - Right click on the webpage, *Inspect Element*, then open the *Console* tab
+  - If you're using a separate Raspberry Pi to connect to the Magic Dashboard, use VNC Viewer to get directly to the Raspberry Pi Desktop
+      - Note: VNC Server is already installed on Raspberry Pi OS, so all you have to do is connect the viewer on your primary computer to the server
+      - [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/)
 
 ***
 
