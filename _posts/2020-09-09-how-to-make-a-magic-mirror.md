@@ -110,12 +110,13 @@ Another note: This guide is heavily borrowed from [this guide](http://emmanuelco
 
 {:start="6"}
 6. Create startup scripts
-  - Note: Your scripts used for starting the MagicMirror will vary depending on how you're planning to implement your setup. If you are running this on a Raspberry Pi Zero W, then continue with *OPTION A*. If you are running this on a Raspberry Pi 3/4, then continue with *OPTION B*.
+  - Note: Your scripts used for starting the MagicMirror will vary depending on how you're planning to implement your setup. If you are running this on a Raspberry Pi Zero W and connecting with a separate computer, then continue with *OPTION A*. If you are running this the MagicMirror server and client on a Raspberry Pi 3/4, then continue with *OPTION B*.
 
   - Another note: You can create these files outside of the Pi and transfer them to your Pi using WinSCP. Otherwise, you can create them directly:
 
+---
 #### OPTION A
-If you are running the MagicMirror *software* on the Raspberry Pi Zero W, follow these steps in *Option A* and skip *Option B*. This means you will either run the MagicMirror *site* on a separate Raspberry Pi or on your primary computer.
+If you are running the MagicMirror *server* (i.e., the MagicMirror software/application) on the Raspberry Pi Zero W, follow these steps in *Option A* and skip *Option B*. This means you will either run the MagicMirror *client* (i.e., the website in a browser) on a separate Raspberry Pi or on your primary computer.
 - `sudo vim /home/pi/mmstart.sh`
   - [mmstart.sh](../files/mmstart.sh)
 
@@ -140,9 +141,54 @@ node serveronly
   - Note: To restart the MagicMirror service,
       `pm2 restart mmstart`
 
+---
+#### OPTION B
+- If you are running the MagicMirror *server* and *client* (i.e., the MagicMirror software AND the website in a a browser) on the Raspberry Pi 3 or 4, follow these steps in *Option B* and disregard *Option A*.
+- `sudo vim /home/pi/mmstart.sh`
+  - [mmstart.sh](../files/mmstart.sh)
+
+{% highlight c %}
+#!/bin/bash
+cd ~/MagicMirror
+node serveronly &
+sleep 30
+xinit /home/pi/chromium_start.sh
+{% endhighlight %}
+
+- `sudo vim chromium_start.sh`
+  - [chromium_start.sh](../files/chromium_start.sh)
+
+{% highlight c %}
+#!/bin/sh
+unclutter &
+xset -dpms # disable DPMS (Energy Star) features.
+xset s off # disable screen saver
+xset s noblank # don’t blank the video device
+matchbox-window-manager &
+chromium-browser --incognito --kiosk http://localhost:8080/
+{% endhighlight %}
+
+- Allow files to be executed
+  - `sudo chmod a+x mmstart.sh`
+  - `sudo chmod a+x chromium_start.sh`
+
+{:start="7"}
+7. Create automatic startup
+  - Setup pm2
+      `cd ~`
+      `sudo npm install -g pm2`
+      `pm2 startup`
+      `pm2 start /home/pi/mmstart.sh`
+      `pm2 save`
+
+  - To restart the MagicMirror service,
+      `pm2 restart mmstart`
+
+---
+
 {:start="8"}
 8. (Optional) Create motion detection script on separate Raspberry Pi
-- If you are using a separate Raspberry Pi (with a motion detector), create the following script (*not* on the Raspberry Pi Zero W):
+- If you are using a Raspberry Pi 3/4 (with a motion detector), create the following script (*not* on the Raspberry Pi Zero W):
 - Note: See Caroline Dunn's [DIY Smart Home Motion Sensor with Raspberry Pi and IFTTT video](https://www.youtube.com/watch?v=72UjPhD9whM) for more info on how to set up the motion detector and how this script was created.
 - `sudo vim /home/pi/motiondetectscreensaver.py`
   - [motiondetectscreensaver.py](../files/motiondetectscreensaver.py)
@@ -240,61 +286,6 @@ except KeyboardInterrupt:
 	GPIO.cleanup()
 {% endhighlight %}
 
-#### OPTION B
-- If you are running the MagicMirror site on the Raspberry Pi 3 or 4, follow these steps in *Option B* and disregard *Option A*.
-- `sudo vim /home/pi/mmstart.sh`
-  - [mmstart.sh](../files/mmstart.sh)
-
-{% highlight c %}
-#!/bin/bash
-cd ~/MagicMirror
-node serveronly &
-sleep 30
-xinit /home/pi/chromium_start.sh
-{% endhighlight %}
-
-- `sudo vim /home/pi/chromium_start.sh`
-  - [chromium_start.sh](../files/chromium_start.sh)
-
-{% highlight c %}
-#!/bin/sh
-unclutter &
-xset -dpms # disable DPMS (Energy Star) features.
-xset s off # disable screen saver
-xset s noblank # don’t blank the video device
-matchbox-window-manager &
-chromium-browser --incognito --kiosk http://localhost:8080/
-{% endhighlight %}
-
-- If you are running the MagicMirror site on a separate Pi, create this script:
-- `sudo vim chromium_start.sh`
-  - [chromium_start.sh](../files/chromium_start.sh)
-
-{% highlight c %}
-#!/bin/sh
-unclutter &
-xset -dpms # disable DPMS (Energy Star) features.
-xset s off # disable screen saver
-xset s noblank # don’t blank the video device
-matchbox-window-manager &
-chromium-browser --incognito --kiosk http://localhost:8080/
-{% endhighlight %}
-
-- Allow files to be executed
-  - `sudo chmod a+x mmstart.sh`
-  - `sudo chmod a+x chromium_start.sh`
-
-{:start="7"}
-7. Create automatic startup
-  - Setup pm2
-      `cd ~`
-      `sudo npm install -g pm2`
-      `pm2 startup`
-      `pm2 start /home/pi/mmstart.sh`
-      `pm2 save`
-
-  - To restart the MagicMirror service,
-      `pm2 restart mmstart`
 
 ***
 
