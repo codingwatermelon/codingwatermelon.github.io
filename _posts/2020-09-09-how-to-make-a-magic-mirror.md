@@ -359,11 +359,12 @@ var config = {
 {:start="4"}
 4. Troubleshooting
   - Developer Tools is your friend
-      - You can use developer tools to find syntax errors in the `config.js` file or to just figure out what a module is doing
-      - Right click on the webpage, *Inspect Element*, then open the *Console* tab
+    - You can use developer tools to find syntax errors in the `config.js` file or to just figure out what a module is doing
+    - Right click on the webpage, *Inspect Element*, then open the *Console* tab
+
   - If you're using a separate Raspberry Pi to connect to the Magic Dashboard, use VNC Viewer to get directly to the Raspberry Pi Desktop
-      - Note: VNC Server is already installed on Raspberry Pi OS, so all you have to do is connect the viewer on your primary computer to the server
-      - [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/)
+    - Note: VNC Server is already installed on Raspberry Pi OS, so all you have to do is connect the viewer on your primary computer to the server
+    - [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/)
 
 ***
 
