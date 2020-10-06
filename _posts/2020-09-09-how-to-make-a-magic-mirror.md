@@ -132,18 +132,18 @@ node serveronly
 {:start="7"}
 7. Create automatic startup
   - Setup pm2
-      `cd ~`
-      `sudo npm install -g pm2`
-      `pm2 startup`
-      `pm2 start /home/pi/mmstart.sh`
-      `pm2 save`
+      - `cd ~`
+      - `sudo npm install -g pm2`
+      - `pm2 startup`
+      - `pm2 start /home/pi/mmstart.sh`
+      - `pm2 save`
 
   - Note: To restart the MagicMirror service,
       `pm2 restart mmstart`
 
 ---
 #### OPTION B
-- If you are running the MagicMirror *server* and *client* (i.e., the MagicMirror software AND the website in a a browser) on the Raspberry Pi 3 or 4, follow these steps in *Option B* and disregard *Option A*.
+If you are running the MagicMirror *server* and *client* (i.e., the MagicMirror software AND the website in a a browser) on the Raspberry Pi 3 or 4, follow these steps in *Option B* and disregard *Option A*.
 - `sudo vim /home/pi/mmstart.sh`
   - [mmstart.sh](../files/mmstart.sh)
 
@@ -175,11 +175,11 @@ chromium-browser --incognito --kiosk http://localhost:8080/
 {:start="7"}
 7. Create automatic startup
   - Setup pm2
-      `cd ~`
-      `sudo npm install -g pm2`
-      `pm2 startup`
-      `pm2 start /home/pi/mmstart.sh`
-      `pm2 save`
+    - `cd ~`
+    - `sudo npm install -g pm2`
+    - `pm2 startup`
+    - `pm2 start /home/pi/mmstart.sh`
+    - `pm2 save`
 
   - To restart the MagicMirror service,
       `pm2 restart mmstart`
@@ -304,8 +304,8 @@ var config = {
 {% endhighlight %}
 
   - **Important:** Whenever you edit the `config.js` file, you'll need to restart the MagicMirror software
-        - `pm2 restart mmstart`
-          - Note: I'll provide my full `config.js` file at the end of this guide
+    - `pm2 restart mmstart`
+      - Note: I'll provide my full `config.js` file at the end of this guide
     - To connect to the dashboard, open a web browser and type the following into the address bar:
       - `http://<PiIPAddress>:8080`
       - If your MagicMirror doesn't come up, you have a problem with your networking or the MagicMirror software isn't started
@@ -322,9 +322,11 @@ var config = {
        - [MMM-AVStock](https://github.com/lavolp3/MMM-AVStock) - a module used to display stock prices
   - To install modules, enter your `modules` folder
     - `cd /home/pi/MagicMirror/modules`
+
   - Clone the Github repository for the module you want to install
     - `git clone <https://github.com/<module>`
     - e.g., `git clone https://github.com/lavolp3/MMM-AVStock`
+
   - Install dependencies for any Node components in the module
     - `cd <module>`
       - e.g., `cd MMM-AVStock`
@@ -366,4 +368,4 @@ var config = {
 ***
 
 ### My MagicMirror config file
-As promised, here's my MagicMirror config file (with personal information stripped). Hope that it helps you!
+As promised, here's my [MagicMirror config file](../files/mmconfig.js) (with personal information stripped). Hope that it helps you!
