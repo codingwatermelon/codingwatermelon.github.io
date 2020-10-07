@@ -112,7 +112,7 @@ Another note: This guide is heavily borrowed from [this guide](http://emmanuelco
 6. Create startup scripts
   - Note: Your scripts used for starting the MagicMirror will vary depending on how you're planning to implement your setup. If you are running this on a Raspberry Pi Zero W and connecting with a separate computer, then continue with *OPTION A*. If you are running this the MagicMirror server and client on a Raspberry Pi 3/4, then continue with *OPTION B*.
 
-  - Another note: You can create these files outside of the Pi and transfer them to your Pi using WinSCP. Otherwise, you can create them directly:
+  - Another note: You can create these files outside of the Pi and transfer them to your Pi using WinSCP. Otherwise, you can create them directly using `vim` or `nano` (or your favorite text editor):
 
 ---
 #### OPTION A
@@ -132,14 +132,18 @@ node serveronly
 {:start="7"}
 7. Create automatic startup
   - Setup pm2
-      - `cd ~`
-      - `sudo npm install -g pm2`
-      - `pm2 startup`
-      - `pm2 start /home/pi/mmstart.sh`
-      - `pm2 save`
+    - `cd ~`
+    - `sudo npm install -g pm2`
+    - `pm2 startup`
+    - `pm2 start /home/pi/mmstart.sh`
+    - `pm2 save`
+  - Setup crontab
+    - `crontab -e`
+    - Add the following to the bottom of the crontab page:
+      - `@reboot sudo pm2 start /home/pi/mmstart.sh`
+        - [crontab picture]()
 
-  - Note: To restart the MagicMirror service,
-      `pm2 restart mmstart`
+  - Note: To restart the MagicMirror service, `pm2 restart mmstart`
 
 ---
 #### OPTION B
@@ -180,20 +184,18 @@ chromium-browser --incognito --kiosk http://localhost:8080/
     - `pm2 startup`
     - `pm2 start /home/pi/mmstart.sh`
     - `pm2 save`
-
   - Setup crontab
     - `crontab -e`
     - Add the following to the bottom of the crontab page:
       - `@reboot sudo pm2 start /home/pi/mmstart.sh`
         - [crontab picture]()
 
-  - To restart the MagicMirror service,
-      `pm2 restart mmstart`
+  - To restart the MagicMirror service, `pm2 restart mmstart`
 
 ---
 
 {:start="8"}
-8. (Optional) Create motion detection script on separate Raspberry Pi
+8. (*Optional*) Create motion detection script on separate Raspberry Pi
 - If you are using a Raspberry Pi 3/4 (with a motion detector), create the following script (*not* on the Raspberry Pi Zero W):
 - Note: See Caroline Dunn's [DIY Smart Home Motion Sensor with Raspberry Pi and IFTTT video](https://www.youtube.com/watch?v=72UjPhD9whM) for more info on how to set up the motion detector and how this script was created.
 - `sudo vim /home/pi/motiondetectscreensaver.py`
