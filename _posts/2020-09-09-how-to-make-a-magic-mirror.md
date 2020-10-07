@@ -132,16 +132,16 @@ node serveronly
 {:start="7"}
 7. Create automatic startup
   - Setup pm2
-    - `cd ~`
-    - `sudo npm install -g pm2`
-    - `pm2 startup`
-    - `pm2 start /home/pi/mmstart.sh`
-    - `pm2 save`
+      - `cd ~`
+      - `sudo npm install -g pm2`
+      - `pm2 startup`
+      - `pm2 start /home/pi/mmstart.sh`
+      - `pm2 save`
   - Setup crontab
-    - `crontab -e`
-    - Add the following to the bottom of the crontab page:
-      - `@reboot sudo pm2 start /home/pi/mmstart.sh`
-        - [crontab picture]()
+      - `crontab -e`
+      - Add the following to the bottom of the crontab page:
+        - `@reboot sudo pm2 start /home/pi/mmstart.sh`
+          - [crontab picture]()
 
   - Note: To restart the MagicMirror service, `pm2 restart mmstart`
 
@@ -179,16 +179,16 @@ chromium-browser --incognito --kiosk http://localhost:8080/
 {:start="7"}
 7. Create automatic startup
   - Setup pm2
-    - `cd ~`
-    - `sudo npm install -g pm2`
-    - `pm2 startup`
-    - `pm2 start /home/pi/mmstart.sh`
-    - `pm2 save`
+      - `cd ~`
+      - `sudo npm install -g pm2`
+      - `pm2 startup`
+      - `pm2 start /home/pi/mmstart.sh`
+      - `pm2 save`
   - Setup crontab
-    - `crontab -e`
-    - Add the following to the bottom of the crontab page:
-      - `@reboot sudo pm2 start /home/pi/mmstart.sh`
-        - [crontab picture]()
+      - `crontab -e`
+      - Add the following to the bottom of the crontab page:
+        - `@reboot sudo pm2 start /home/pi/mmstart.sh`
+          - [crontab picture]()
 
   - To restart the MagicMirror service, `pm2 restart mmstart`
 
