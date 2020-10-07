@@ -181,6 +181,12 @@ chromium-browser --incognito --kiosk http://localhost:8080/
     - `pm2 start /home/pi/mmstart.sh`
     - `pm2 save`
 
+  - Setup crontab
+    - `crontab -e`
+    - Add the following to the bottom of the crontab page:
+      - `@reboot sudo pm2 start /home/pi/mmstart.sh`
+        - [crontab picture]()
+
   - To restart the MagicMirror service,
       `pm2 restart mmstart`
 
