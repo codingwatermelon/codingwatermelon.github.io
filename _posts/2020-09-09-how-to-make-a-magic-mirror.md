@@ -200,8 +200,8 @@ chromium-browser --incognito --kiosk http://localhost:8080/
 8. (*Optional*) Create motion detection script on separate Raspberry Pi
 - If you are using a Raspberry Pi 3/4 (with a motion detector), create the following script (*not* on the Raspberry Pi Zero W):
 - Note: See Caroline Dunn's [DIY Smart Home Motion Sensor with Raspberry Pi and IFTTT video](https://www.youtube.com/watch?v=72UjPhD9whM) for more info on how to set up the motion detector and how this script was created.
-- `sudo vim /home/pi/motiondetectscreensaver.py`
-  - [motiondetectscreensaver.py](../files/motiondetectscreensaver.py)
+- `sudo vim /home/pi/motiondetectionscript.py`
+  - [motiondetectionscript.py](/resources/01-MagicMirror/motiondetectionscript.py)
 
 {% highlight python %}
 #! /usr/bin/python
@@ -379,4 +379,4 @@ var config = {
 ***
 
 ### My MagicMirror config file
-As promised, here's my [MagicMirror config file](../files/mmconfig.js) (with personal information stripped). Hope that it helps you!
+As promised, here's my [MagicMirror config file](/resources/01-MagicMirror/code) (with personal information stripped). Hope that it helps you!
