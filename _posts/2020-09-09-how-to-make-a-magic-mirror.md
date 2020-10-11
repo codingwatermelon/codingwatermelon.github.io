@@ -120,7 +120,7 @@ If you are running the MagicMirror *server* (i.e., the MagicMirror software/appl
 - `sudo vim /home/pi/mmstart.sh`
   - [mmstart.sh](../files/mmstart.sh)
 
-{% highlight c %}
+{% highlight shell %}
 #!/bin/bash
 cd ~/MagicMirror
 node serveronly
@@ -152,7 +152,7 @@ If you are running the MagicMirror *server* and *client* (i.e., the MagicMirror 
 - `sudo vim /home/pi/mmstart.sh`
   - [mmstart.sh](../files/mmstart.sh)
 
-{% highlight c %}
+{% highlight shell %}
 #!/bin/bash
 cd ~/MagicMirror
 node serveronly &
@@ -163,7 +163,7 @@ xinit /home/pi/chromium_start.sh
 - `sudo vim chromium_start.sh`
   - [chromium_start.sh](../files/chromium_start.sh)
 
-{% highlight c %}
+{% highlight shell %}
 #!/bin/sh
 unclutter &
 xset -dpms # disable DPMS (Energy Star) features.
@@ -305,7 +305,7 @@ except KeyboardInterrupt:
   - Allow your computer to connect to the Pi
   - In `~/MagicMirror/config/config.js` (either use `vim` or `nano` to edit directly or WinSCP to transfer the file here),
 
-{% highlight c %}
+{% highlight javascript %}
 var config = {
   address: "<yourPiIP (use ifconfig)>"
   port: 8080,
@@ -351,7 +351,7 @@ var config = {
   - Add any module configuration into the file, following the configuration structure
     - For example,
 
-{% highlight c %}
+{% highlight javascript %}
 {
   //disabled:true,
   module: "MMM-AVStock",
