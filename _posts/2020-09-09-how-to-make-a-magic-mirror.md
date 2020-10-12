@@ -142,7 +142,7 @@ node serveronly
       - `crontab -e`
       - Add the following to the bottom of the crontab page:
         - `@reboot sudo pm2 start /home/pi/mmstart.sh`
-          - [crontab picture]()
+          - [your crontab should look like this](/resources/01-MagicMirror/photos/crontab.png)
 
   - Note: To restart the MagicMirror service, `pm2 restart mmstart`
 
@@ -190,7 +190,7 @@ chromium-browser --incognito --kiosk http://localhost:8080/
       - `crontab -e`
       - Add the following to the bottom of the crontab page:
         - `@reboot sudo pm2 start /home/pi/mmstart.sh`
-          - [it should look like this]()
+          - [your crontab should look like this](/resources/01-MagicMirror/photos/crontab.png)
 
   - To restart the MagicMirror service, `pm2 restart mmstart`
 
