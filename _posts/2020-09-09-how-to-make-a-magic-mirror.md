@@ -50,7 +50,7 @@ Another note: This guide is heavily borrowed from [this guide](http://emmanuelco
 2. Format your SD card with SD Card Formatter
 3. Flash the Raspberry Pi Raspbian Buster with Desktop image to your SD card with Etcher
   - *(Optional Step)* **If you don't have a Mini HDMI to HDMI adapter** or **if you don't want to configure the Pi via the desktop GUI** (i.e., a purely "headless" setup), you will want to add a couple of network configuration files to the `/boot` folder (accessible after you flash the image to the SD card) so that the Pi can connect to your network:
-    - (1) `wpa_supplicant.conf` - the WiFi [network configuration file](../files/wpa_supplicant.conf)
+    - (1) `wpa_supplicant.conf` - the WiFi [network configuration file](/resources/01-MagicMirror/code/wpa_supplicant.conf)
     - (2) `ssh` - the SSH configuration file
       - This file can just be an empty file named `ssh`; it basically just tells the Pi that it should turn on the SSH configuration so that you can remotely connect to it
 4. Plug in the SD card to the Raspberry Pi, connect it to a monitor, then power it on
@@ -79,7 +79,7 @@ Another note: This guide is heavily borrowed from [this guide](http://emmanuelco
 2. Change password
   - `sudo passwd pi`
 3. (Optional) If you just enabled SSH access, connect to the Pi via SSH now.
-  - To find the IP address to connect to, run `ifconfig` ([picture](../images/ifconfig.png)) on the Pi directly or use an [IP scanner](https://angryip.org/download/#windows) to find it.
+  - To find the IP address to connect to, run `ifconfig` ([picture](/resources/01-MagicMirror/photos/ifconfig.png)) on the Pi directly or use an [IP scanner](https://angryip.org/download/#windows) to find it.
 4. Install OS & software updates
   - `sudo apt update && sudo apt upgrade`
 5. Install software
@@ -118,7 +118,7 @@ Another note: This guide is heavily borrowed from [this guide](http://emmanuelco
 #### OPTION A
 If you are running the MagicMirror *server* (i.e., the MagicMirror software/application) on the Raspberry Pi Zero W, follow these steps in *Option A* and skip *Option B*. This means you will either run the MagicMirror *client* (i.e., the website in a browser) on a separate Raspberry Pi or on your primary computer.
 - `sudo vim /home/pi/mmstart.sh`
-  - [mmstart.sh](../files/mmstart.sh)
+  - [mmstart.sh](/resources/01-MagicMirror/code/mmstart_serveronly.sh)
 
 {% highlight shell %}
 #!/bin/bash
@@ -150,7 +150,7 @@ node serveronly
 #### OPTION B
 If you are running the MagicMirror *server* and *client* (i.e., the MagicMirror software AND the website in a a browser) on the Raspberry Pi 3 or 4, follow these steps in *Option B* and disregard *Option A*.
 - `sudo vim /home/pi/mmstart.sh`
-  - [mmstart.sh](../files/mmstart.sh)
+  - [mmstart.sh](/resources/01-MagicMirror/code/mmstart_serverclient.sh)
 
 {% highlight shell %}
 #!/bin/bash
@@ -161,7 +161,7 @@ xinit /home/pi/chromium_start.sh
 {% endhighlight %}
 
 - `sudo vim chromium_start.sh`
-  - [chromium_start.sh](../files/chromium_start.sh)
+  - [chromium_start.sh](/resources/01-MagicMirror/code/chromium_start.sh)
 
 {% highlight shell %}
 #!/bin/sh
@@ -201,7 +201,7 @@ chromium-browser --incognito --kiosk http://localhost:8080/
 - If you are using a Raspberry Pi 3/4 (with a motion detector), create the following script (*not* on the Raspberry Pi Zero W):
 - Note: See Caroline Dunn's [DIY Smart Home Motion Sensor with Raspberry Pi and IFTTT video](https://www.youtube.com/watch?v=72UjPhD9whM) for more info on how to set up the motion detector and how this script was created.
 - `sudo vim /home/pi/motiondetectionscript.py`
-  - [motiondetectionscript.py](/resources/01-MagicMirror/motiondetectionscript.py)
+  - [motiondetectionscript.py](/resources/01-MagicMirror/code/motiondetectionscript.py)
 
 {% highlight python %}
 #! /usr/bin/python
@@ -379,4 +379,4 @@ var config = {
 ***
 
 ### My MagicMirror config file
-As promised, here's my [MagicMirror config file](/resources/01-MagicMirror/code) (with personal information stripped). Hope that it helps you!
+As promised, here's my [MagicMirror config file](/resources/01-MagicMirror/code/config.js) (with personal information stripped). Hope that it helps you!
