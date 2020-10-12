@@ -9,18 +9,20 @@
  */
 
 var config = {
-	address: "192.168.90.224", // Address to listen on, can be:
-	                      // - "localhost", "127.0.0.1", "::1" to listen on loopback interface
-	                      // - another specific IPv4/6 to listen on a specific interface
-	                      // - "0.0.0.0", "::" to listen on any interface
-	                      // Default, when address config is left out or empty, is "localhost"
+	address: "<yourPIIP>", // Address to listen on, can be:
+													// The IP of the PI that you're running the MagicMirror on (use 'ifconfig')
+		                      // - "localhost", "127.0.0.1", "::1" to listen on loopback interface
+		                      // - another specific IPv4/6 to listen on a specific interface
+		                      // - "0.0.0.0", "::" to listen on any interface
+		                      // Default, when address config is left out or empty, is "localhost"
 	port: 8080,
-	//ipWhitelist: [],
-	ipWhitelist: ["192.168.90.84", "192.168.90.165", "192.168.90.224", "127.0.0.1", "::ffff:127.0.0.1", "::1"], // Set [] to allow all IP addresses
-	                                                       // or add a specific IPv4 of 192.168.1.5 :
-	                                                       // ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.1.5"],
-	                                                       // or IPv4 range of 192.168.3.0 --> 192.168.3.15 use CIDR format :
-	                                                       // ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.3.0/28"],
+	ipWhitelist: [ "127.0.0.1", "::ffff:127.0.0.1", "::1"],  // Find the IP of the computer(s) that you will connect to the MagicMirror from and add them here
+	 																												 // Set [] to allow all IP addresses
+		                                                       // or add a specific IPv4 of 192.168.1.5 :
+		                                                       // ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.1.5"],
+		                                                       // or IPv4 range of 192.168.3.0 --> 192.168.3.15 use CIDR format :
+		                                                       // ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.3.0/28"],
+																													 //
 
 	useHttps: false, 		// Support HTTPS or not, default "false" will use HTTP
 	httpsPrivateKey: "", 	// HTTPS private key path, only require when useHttps is true
@@ -53,20 +55,21 @@ var config = {
 				updateInterval: 0,
 				NextURLInterval: 0,
 				displayLastUpdate: false,
-				url: ["http://192.168.90.218:8081"],
+				url: ["http://192.168.xx.xx:8081"], // For my MagicMirror, I'm using a motioneyeOS camera
 				shutoffDelay: 10000
 
 			}
 		},
 		{
+			// Note: Read the docs for this module to set this up
 			module: 'MMM-MicrosoftToDo',
 			position: 'top_left',
 			header: 'Task List',
 			config: {
-				oauth2ClientSecret: 's-TMpw]1kSy]wqbj?bNl3FAXl4F7kUn4',
-				oauth2RefreshToken: 'MCbgOdyL72L4xujlq*Nirq8rFQBLlZVUctzSVRY2Jw8RTftu2a6RJ0DzvSGK51rgQxLrMTkPSRAR!9vNOCjnRp1pzH9D4A1QvWoH0JkY5*QoGKPk5DmhCU*fwChDAo44dI!l6JP2qISOsA7mpui0Bm7IN!qilWz7gd3MVKguJkBAgwglihk*Ji0pTRyctYm!mmkMqO0bAb5w*TG!Lai!v*GXBNeb8qpZ5*gLK23MYltDGfHMYSTTemJwdqFlcyCSXp1XNwSEJHCgysqNhis9o9gmz!606wlsPqprPGlDV!37Q!gY3GDHhw5CM!zl*vwMTzU1ubO7eUGEz*VBFoOA5*Ee5W2C5pjAYtw3O6x0LbM1*lIemiThpbg9GHvRPgxguLWwFeay448jZV7**SGrj0YYFW*Va0T9JyltHSCq2jHRU',
-				oauth2ClientId: 'b7809014-0e97-45e5-934d-12e005989dbc',
-				listId: 'AQMkADAwATMwMAItZDE3NC04ZGIwLTAwAi0wMAoALgAAA5xW9ScynKZAl6KRnYxA_zEBAEJgWa_uuMhKtmNJGgQJ-1MABCQXtAEAAAA=',
+				oauth2ClientSecret: '<MSTODOClientSecret>',
+				oauth2RefreshToken: '<MSTODORefreshToken>',
+				oauth2ClientId: '<MSTODOClientID>',
+				listId: '<MSTODOListID>',
 				showCheckbox: true,
 				hideIfEmpty: false,
 				maxWidth: 450,
@@ -78,7 +81,7 @@ var config = {
 			module: "MMM-AVStock",
 			position: "top_left",
 			config: {
-				apiKey: "3QOJHNU3PXFCBMAA",
+				apiKey: "<AVStockAPIKey>",	// Note: Get the API key from an Alphavantage account
 				symbols: ["TSLA", "DIS", "AAPL", "VTI", "SPY"]
 			}
 
@@ -87,7 +90,7 @@ var config = {
 			module: 'MMM-BackgroundSlideshow',
 			position: 'fullscreen_below',
 			config: {
-				imagePaths: ['modules/MMM-BackgroundSlideshow/testImages/'],
+				imagePaths: ['modules/MMM-BackgroundSlideshow/testImages/'], 	// Note: Point path to where you want to display images from
 				transitionImages: true,
 				randomizeImageOrder: true,
 				slideshowSpeed: 300000,
@@ -119,7 +122,7 @@ var config = {
 			config: {
 				calendars: [
 					{
-						url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"					
+						url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"
 					},
 				],
 				maximumEntries: "3"
@@ -132,7 +135,7 @@ var config = {
 			config: {
 				calendars: [
 					{
-						url: 'https://calendar.google.com/calendar/ical/jtorres7797%40gmail.com/private-68abb9e022613183a319fb380769dc2e/basic.ics'
+						url: '<yourGoogleCalendarID>' // Note: Read the docs for this module in order to set up your Google Calendar data import into MagicMirror
 					}
 				],
 				maximumEntries: "7"
@@ -144,7 +147,7 @@ var config = {
 			config: {
 				location: "Honolulu",
 				locationID: "5856195", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
-				appid: "2d05b29c0378fc224425cd288f11994f",
+				appid: "<appID>",	// Note: Need to create an account on openweathermap.com to get an appID
 				showFeelsLike: false
 			}
 		},
@@ -155,7 +158,7 @@ var config = {
 			config: {
 				location: "Honolulu",
 				locationID: "5856195", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
-				appid: "2d05b29c0378fc224425cd288f11994f"
+				appid: "<appID>"	// Note: Need to create an account on openweathermap.com to get an appID
 			}
 		},
 		{
