@@ -12,9 +12,12 @@ Note: for this project, I wasn't able to run the MagicMirror site on the Pi Zero
 
 Another note: This guide is heavily borrowed from [this guide](http://emmanuelcontreras.com/how-to/how-to-create-a-magic-mirror-2-with-pi-zero-w/), though there are some differences in the major goals between our guides.
 
+Yet another note: Some parts of this guide may be outdated as this was written in September 2020. Version numbers in this guide will likely be outdated, so keep an eye out for that.
+
 ***
 
 ### Parts Required
+Note: The links for the products are Amazon affiliate links which will help to support me and the Youtube channel!
 - A [Raspberry Pi Zero W](https://www.amazon.com/Raspberry-Pi-Zero-Wireless-model/dp/B06XFZC3BX/ref=sr_1_5?dchild=1&keywords=raspberry+pi+zero+w&qid=1589698278&sr=8-5) ($25)
 - A [5.0V - 2.5A power supply](https://www.amazon.com/CanaKit-Raspberry-Supply-Adapter-Listed/dp/B00MARDJZ4/ref=sr_1_1?dchild=1&keywords=raspberry+pi+zero+w+power+supply&qid=1589698376&sr=8-1) (~$10)
   - **Note**: I bought a [Raspberry Pi Zero W Kit](https://www.amazon.com/gp/product/B0748MPQT4/) (~$28), which came with a case, heatsink, mini HDMI adapter, and other useful parts. This option will makes more sense than buying the parts separately because the price difference is miniscule between buying the board and this complete kit.
@@ -85,7 +88,7 @@ Another note: This guide is heavily borrowed from [this guide](http://emmanuelco
 5. Install software
     - Node.JS (old version that is compatible with Pi Zero)
       - `sudo wget https://nodejs.org/dist/v10.16.0/node-v10.16.0-linux-armv6l.tar.xz`
-      - `tar xvf node-v10.11.0-linux-armv6l.tar.xz`
+      - `tar xvf node-v10.16.0-linux-armv6l.tar.xz`
       - `cd node-v8.3.0-linux-armv6l`
       - `sudo cp -R * /usr/local`
       - `sudo reboot`
