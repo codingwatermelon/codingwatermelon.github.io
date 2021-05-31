@@ -17,20 +17,23 @@ I had an idea one day, stemming from an experience I had at my friend's house in
 
 ---
 There were three main goals with this project:
-#### 1. Send audio through to a speaker remotely at all times
-To do this, I knew a Raspberry Pi would be the easiest tool to use to interface with my "command center". The command center in this case would be Discord, and the Raspberry Pi would process the commands, turn them into audio, and output that to a speaker.
 
-*add simple drawing of set up here*
+> #### 1. Send audio through to a speaker remotely at all times
+> To do this, I knew a Raspberry Pi would be the easiest tool to use to interface with my "command center". The command center in this case would be Discord, and the Raspberry Pi would process the commands, turn them into audio, and output that to a speaker.
+>
+> *add simple drawing of set up here*
+>
+> I used the DiscordJS module on a NodeJS Docker container running on a Raspberry Pi. The Node app will recognize commands that are received from Discord. The main function of the Node is that send audio files to the Pi from Youtube, but it can also process text to speech.
+>
+> #### 2. Create an easily deployable app (easy to set up for pranks, easy for others to replicate)
+> To do this, I knew that I wanted to use Docker. Docker makes it easy for other people to pull your image to their setups and just run it without thinking too much about dependencies and other requirements. You can definitely do this without Docker, but you'd need to install Node locally on the Raspberry Pi, which can be problematic if you want to run other web servers or software on the Pi (but still possible). Unfortunately, I wasn't able to completely contain this project within a Docker container as I couldn't find a way to process the audio files in Node/Docker, but there may be a way to do it -- I think I'm just not experienced enough with Docker yet to figure it out. To get around that, there are some scripts that need to be ran and some software that needs to be installed on the Raspberry Pi locally to make things happen.
+> 
+> #### 3. Not spend too much money
+> The cost of this project was definitely on the lower side, coming out to around $100 if you don't have all the parts already. The speaker can cost anywhere from $15 to $30 for average speakers. The app in this tutorial was designed to run alongside other processes on a Raspberry Pi, so you could run something like a MagicMirror and this app at the same time if you wanted to (that way, you don't have to buy another Raspberry Pi just to run this).
 
-I used the DiscordJS module on a NodeJS Docker container running on a Raspberry Pi. The Node app will recognize commands that are received from Discord. The main function of the Node is that send audio files to the Pi from Youtube, but it can also process text to speech.
-
-#### 2. Create an easily deployable app (easy to set up for pranks, easy for others to replicate)
-To do this, I knew that I wanted to use Docker. Docker makes it easy for other people to pull your image to their setups and just run it without thinking too much about dependencies and other requirements. You can definitely do this without Docker, but you'd need to install Node locally on the Raspberry Pi, which can be problematic if you want to run other web servers or software on the Pi (but still possible). Unfortunately, I wasn't able to completely contain this project within a Docker container as I couldn't find a way to process the audio files in Node/Docker, but there may be a way to do it -- I think I'm just not experienced enough with Docker yet to figure it out. To get around that, there are some scripts that need to be ran and some software that needs to be installed on the Raspberry Pi locally to make things happen.
-
-#### 3. Not spend too much money
-The cost of this project was definitely on the lower side, coming out to around $100 if you don't have all the parts already. The speaker can cost anywhere from $15 to $30 for average speakers. The app in this tutorial was designed to run alongside other processes on a Raspberry Pi, so you could run something like a MagicMirror and this app at the same time if you wanted to (that way, you don't have to buy another Raspberry Pi just to run this).
 
 ---
+
 
 I only somewhat fulfilled these requirements, but I ended up with an interesting product that might actually have some practical uses apart from the pranking aspect. I've realized that you could also use it like an online jukebox — if you have friends over, they could each individually play and queue different songs using this app and without having to download a separate app (assuming people have Discord on their phones). This also means you don't have to use the same phone to queue songs.
 
