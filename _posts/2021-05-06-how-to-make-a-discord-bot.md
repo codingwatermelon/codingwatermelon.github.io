@@ -18,17 +18,17 @@ I had an idea one day, stemming from an experience I had at my friend's house in
 #### Goals
 There were three main goals with this project:
 
-##### 1. Send audio through to a speaker remotely at all times
-To do this, I knew a Raspberry Pi would be the easiest tool to use to interface with my "command center". The command center in this case would be Discord, and the Raspberry Pi would process the commands, turn them into audio, and output that to a speaker.
+#### 1. Send audio through to a speaker remotely at all times
+To do this, I knew a Raspberry Pi would be the easiest tool to use to interface with my "command center". The **command center** in this case **would be Discord**, and the **Raspberry Pi would process the commands**, turn them into audio, and output that to a speaker.
 
 *add simple drawing of set up here*
 
 I used the DiscordJS module on a NodeJS Docker container running on a Raspberry Pi. The Node app will recognize commands that are received from Discord. The main function of the Node is that send audio files to the Pi from Youtube, but it can also process text to speech.
 
-##### 2. Create an easily deployable app (easy to set up for pranks, easy for others to replicate)
+#### 2. Create an easily deployable app (easy to set up for pranks, easy for others to replicate)
 To do this, I knew that I wanted to use **Docker**. Docker makes it easy for other people to pull your image to their setups and just run it without thinking too much about dependencies and other requirements. You can definitely do this without Docker, but you'd need to install Node locally on the Raspberry Pi, which can be problematic if you want to run other web servers or software on the Pi (but still possible). Unfortunately, I wasn't able to completely contain this project within a Docker container as I couldn't find a way to process the audio files in Node/Docker, but there may be a way to do it -- I think I'm just not experienced enough with Docker yet to figure it out. To get around that, there are some scripts that need to be ran and some software that needs to be installed on the Raspberry Pi locally to make things happen.
 
-##### 3. Not spend too much money
+#### 3. Not spend too much money
 **The cost of this project was definitely on the lower side, coming out to around $100 if you don't have all the parts already**. The speaker can cost anywhere from $15 to $30 for average speakers. The app in this tutorial was designed to run alongside other processes on a Raspberry Pi, so you could run something like a MagicMirror and this app at the same time if you wanted to (that way, you don't have to buy another Raspberry Pi just to run this).
 
 I only somewhat fulfilled these requirements, but I ended up with an interesting product that might actually have some practical uses apart from the pranking aspect. I've realized that you could also use it like an online jukebox — if you have friends over, they could each individually play and queue different songs using this app and without having to download a separate app (assuming people have Discord on their phones). This also means you don't have to use the same phone to queue songs.
@@ -58,7 +58,7 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 ### Instructions
 
 1. Install Docker
-    - If you don't know what Docker is, you should watch [this video](https://www.youtube.com/watch?v=Gjnup-PuquQ). It's only 60 seconds, but it provides a lot of important information.
+    - If you don't know what Docker is, you should watch [this video](https://www.youtube.com/watch?v=Gjnup-PuquQ). It's only 2 minutes, but it provides a lot of important information.
     - Install Docker on your primary computer: [https://docs.docker.com/desktop/](https://docs.docker.com/desktop/)
       - If you've never used Docker, I **HIGHLY** recommend going through the beginner tutorial. Here are my notes from when I went through the Docker tutorial (TODO insert notes here)
     - Install Docker on the Raspberry Pi: [https://phoenixnap.com/kb/docker-on-raspberry-pi](https://phoenixnap.com/kb/docker-on-raspberry-pi)
@@ -115,14 +115,14 @@ TODO reference files like this [MagicMirror config file](/resources/01-MagicMirr
 
 In conclusion, this bot is pretty much just for fun and has not much practical usage. I want to expand on it later on though and potentially make it more useful, but I'm pretty happy with it for now. Let me know if you have any ideas for functions for this app and I'll be sure to reply with my thoughts! Hopefully you got something out of this, regardless of the shenanigans.
 
-##### Future enhancements?
+#### Future enhancements?
 - Add command to silence the bot
 - Authorize commands based on role in server
 
 -----
 
 #### Build Log
-This section contains the high level overview of the process I took to create this bot. You can skip this part, unless you need to troubleshoot any of the steps in between or if you're just interested in the process.
+This section contains the high level overview of the process I took to create this bot. **You can skip this part**, *unless* you need to troubleshoot any of the steps in between or if you're just interested in the process.
 
 1. Create Discord bot
     - [How to make a Discord Bot with Discord.js (JavaScript Tutorial)](https://www.youtube.com/watch?v=D2zZG0BUlxk)
@@ -154,7 +154,7 @@ This section contains the high level overview of the process I took to create th
 
 7. Run app on Docker on Raspberry Pi
 
-8. Create script to find audio files
+8. Create scripts to find audio files
 
 9. Create startup scripts
     - Create systemd systemctl service to start scripts upon boot
@@ -162,14 +162,14 @@ This section contains the high level overview of the process I took to create th
 ---
 
 #### Miscellaneous Frustrations
-This section includes exactly what it says on the label; frustrating parts of this project that took forever to figure out and almost made me give up. I ended up learning a ton from this project, so I suppose you should take that as one of the lessons from this guide. Definitely skip this section, unless you're curious about why this video/guide took a long time to make.
+This section includes exactly what it says on the label; frustrating parts of this project that took forever to figure out and almost made me give up. I ended up learning a ton from this project, so I suppose you should take that as one of the lessons from this guide. **Definitely skip this section**, *unless* you're curious about why this video/guide took a long time to make.
 
-###### Attempt at using Python to find audio files
+##### Attempt at using Python to find audio files
 Playing audio in a raspberry pi docker container is harder than I thought...
 
 - First, I tried to figure out how to make the audio play through the raspberry pi. There was something called omxplayer that gets installed with the raspberry pi base image and I figured this could probably come in handy. (more on this later)
 - Then, I tried to figure out how I would get youtube videos/audio to play within the app. I knew that this would require some type of npm package magic, and thankfully there were a few different options. I only had luck with ytdl-core and it worked great for downloading youtube videos.
-- Then, I tried to figure out how to play sound from within the docker container. I tried almost any npm package I could find for playing audio but they all didn't seem to work. I was stuck on this step for hours and my search for a solution spanned days. I kept thinking of ways to rephrase my question but it kept giving me the same or similar results which kept leading me astray. It almost made me want to give up and run the app on the Pi locally instead of within a Docker container, but I knew there had to be a way to do this. It was only when I went back to the start of this all that I realized what I had to do. See, omxplayer is already installed on the raspberry Pi, so if I could figure out a way to call the omxplayer command from within the app container, that would solve my issue. However, since the audio file that gets downloaded from the app is stored within the app, I had to figure out a way to run the omxplayer command from within the app. ]Somebody on stackoverflow seemed to have the same issue](https://stackoverflow.com/questions/32163955/how-to-run-shell-script-on-host-from-docker-container), but the accepted answer didn't really make sense to me and the second answer seemed stupid. It was only when I scrolled down to the third answer that I realized what I needed to do.
+- Then, I tried to figure out how to play sound from within the docker container. I tried almost any npm package I could find for playing audio but they all didn't seem to work. I was stuck on this step for hours and my search for a solution spanned days. I kept thinking of ways to rephrase my question but it kept giving me the same or similar results which kept leading me astray. It almost made me want to give up and run the app on the Pi locally instead of within a Docker container, but I knew there had to be a way to do this. It was only when I went back to the start of this all that I realized what I had to do. See, omxplayer is already installed on the raspberry Pi, so if I could figure out a way to call the omxplayer command from within the app container, that would solve my issue. However, since the audio file that gets downloaded from the app is stored within the app, I had to figure out a way to run the omxplayer command from within the app. [Somebody on stackoverflow seemed to have the same issue](https://stackoverflow.com/questions/32163955/how-to-run-shell-script-on-host-from-docker-container), but the accepted answer didn't really make sense to me and the second answer seemed stupid. It was only when I scrolled down to the third answer that I realized what I needed to do.
 - The solution was to actually figure out a way to get the video file from the app container and have a different script running on the host machine to look for that file and run the omxplayer command if it saw the file. I thought back to the Docker tutorial and remember named volumes and bindmount volumes and from there the floodgates opened. There is a way to link the host filesystem with the container file system, and you do so by running this command. Then, whatever files get put in the container directory specified in the command also get uploaded to the specified host directory, which enables me to interact with it on the raspberry pi.
 
 Research:
