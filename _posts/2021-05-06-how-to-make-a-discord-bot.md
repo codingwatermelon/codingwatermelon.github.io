@@ -13,14 +13,14 @@ categories: howto, docker, raspberrypi, node, discord
 ### Introduction
 I had an idea one day, stemming from an experience I had at my friend's house involving a bluetooth speaker, Michael Jackson grunting noises (video here), and me being unable to do anything about it. I explain more about that in my video, but let's jump into the tutorial here.
 
-<can I indent this section?>
+*can I indent this section?*
 
 ---
 There were three main goals with this project:
 #### 1. Send audio through to a speaker remotely at all times
 To do this, I knew a Raspberry Pi would be the easiest tool to use to interface with my "command center". The command center in this case would be Discord, and the Raspberry Pi would process the commands, turn them into audio, and output that to a speaker.
 
-<add simple drawing of set up here>
+*add simple drawing of set up here*
 
 I used the DiscordJS module on a NodeJS Docker container running on a Raspberry Pi. The Node app will recognize commands that are received from Discord. The main function of the Node is that send audio files to the Pi from Youtube, but it can also process text to speech.
 
