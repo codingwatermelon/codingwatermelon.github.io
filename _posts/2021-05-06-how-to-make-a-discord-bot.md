@@ -162,7 +162,7 @@ This section contains the high level overview of the process I took to create th
 #### Miscellaneous Frustrations
 This section includes exactly what it says on the label; frustrating parts of this project that took forever to figure out and almost made me give up. I ended up learning a ton from this project, so I suppose you should take that as one of the lessons from this guide. **Definitely skip this section**, *unless* you're curious about why this video/guide took a long time to make.
 
-##### Attempt at using Python to find audio files
+**1. Attempt at using Python to find audio files**
 Playing audio in a raspberry pi docker container is harder than I thought...
 
 - First, I tried to figure out how to make the audio play through the raspberry pi. There was something called omxplayer that gets installed with the raspberry pi base image and I figured this could probably come in handy. (more on this later)
@@ -178,9 +178,7 @@ Research:
 - [https://www.digitalocean.com/community/tutorials/how-to-share-data-between-the-docker-container-and-the-host](https://www.digitalocean.com/community/tutorials/how-to-share-data-between-the-docker-container-and-the-host)
 - [https://github.com/fent/node-ytdl-core](https://github.com/fent/node-ytdl-core)
 
-###### Text to Speech troubles
+**2. Text to Speech troubles**
 
 - I tried to use Python again (tried Python for watchdog), but for a different thing this time. This time, I wanted to make a way to convert text to speech (which was actually the main objective of this project, the other stuff came in later). I first tried using pyttsx3. This was working fine while testing on my Mac, so I copy/pasted the script over to the Pi and built it into the watchdog script... I tested it, and it didn't work. There were no errors, even when I turned on debugging. Which was super helpful. I tried for a couple hours to get it to work and ended up going to the developer's Github to see if there were any known issues with the package and the Raspberry Pi. Based on what I read, I gathered that there were a plethora of issues but not necessarily related to the Pi... there probably is a way to get it to work on the Pi, but I explored alternate methods.
 - It turns out one of the components that pyttsx3 is reliant on, an apt package called espeak, can already do text to speech. The problem was that I couldn't get espeak to play the audio from the text to speech. A very special 'Thank you' to all the guides that did **not** mention what to do if you **CAN'T** hear audio when trying to use espeak to play audio. THANK GOD that espeak is able to write to a file, because that way I can use omxplayer to play the .wav file that espeak creates.
-
----
