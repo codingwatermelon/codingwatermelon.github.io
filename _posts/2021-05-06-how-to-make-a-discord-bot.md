@@ -60,7 +60,7 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 1. Install Docker
     - If you don't know what Docker is, you should watch [this video](https://www.youtube.com/watch?v=Gjnup-PuquQ). It's only 2 minutes, but it provides a lot of important information.
     - Install Docker on your primary computer: [https://docs.docker.com/desktop/](https://docs.docker.com/desktop/)
-      - If you've never used Docker, I **HIGHLY** recommend going through the beginner tutorial. Here are my notes from when I went through the Docker tutorial (TODO insert notes here)
+      - If you've never used Docker, I **HIGHLY** recommend going through the beginner tutorial. Here are [my notes](/resources/01-Discordbot/dockertutorialnotes.md) from when I went through the Docker tutorial
     - Install Docker on the Raspberry Pi: [https://phoenixnap.com/kb/docker-on-raspberry-pi](https://phoenixnap.com/kb/docker-on-raspberry-pi)
 
 2. Set up a Discord bot on your Discord
@@ -106,8 +106,6 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 
     - (TODO Add section for creating systemd services)
     - (TODO Add comments to scripts)
-
-TODO reference files like this [MagicMirror config file](/resources/01-MagicMirror/code/config.js.txt)
 
 ---
 
