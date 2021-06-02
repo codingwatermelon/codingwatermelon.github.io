@@ -2,7 +2,7 @@
 layout: post
 title: "How to make a Discord Bot (using Docker and Raspberry Pi)"
 date: 2021-05-06 22:27:00 -1000
-categories: howto, docker, raspberrypi, node, discord
+categories: howto docker raspberrypi node discord
 ---
 
 ---
