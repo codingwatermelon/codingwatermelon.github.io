@@ -1,5 +1,5 @@
 ---
 layout: allposts
-title: About
+title: Posts by Categories
 permalink: /allposts/
 ---
