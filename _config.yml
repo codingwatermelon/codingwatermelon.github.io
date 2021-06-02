@@ -34,7 +34,7 @@ instagram_username: "masterofsome__"
 
 header_pages:
   - about.markdown
-
+  - allposts.md
 
 plugins:
   - jekyll-feed
