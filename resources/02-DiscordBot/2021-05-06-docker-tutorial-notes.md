@@ -1,8 +1,8 @@
 ---
 layout: mdresource
-title: "How to make a Discord Bot (using Docker and Raspberry Pi)"
+title: "Docker Tutorial Notes"
 date: 2021-05-06 22:27:00 -1000
-categories: howto docker raspberrypi node discord
+categories: resource
 ---
 
 ### Important General Information
