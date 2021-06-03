@@ -29,7 +29,7 @@ I used the DiscordJS module on a NodeJS Docker container running on a Raspberry 
 To do this, I knew that I wanted to use **Docker**. Docker makes it easy for other people to pull your image to their setups and just run it without thinking too much about dependencies and other requirements. You can definitely do this without Docker, but you'd need to install Node locally on the Raspberry Pi, which can be problematic if you want to run other web servers or software on the Pi (but still possible). Unfortunately, I wasn't able to completely contain this project within a Docker container as I couldn't find a way to process the audio files in Node/Docker, but there may be a way to do it -- I think I'm just not experienced enough with Docker yet to figure it out. To get around that, there are some scripts that need to be ran and some software that needs to be installed on the Raspberry Pi locally to make things happen.
 
 #### 3. Not spend too much money
-**The cost of this project was definitely on the lower side, coming out to around $100 if you don't have all the parts already**. The speaker can cost anywhere from $15 to $30 for average speakers. The app in this tutorial was designed to run alongside other processes on a Raspberry Pi, so you could run something like a MagicMirror and this app at the same time if you wanted to (that way, you don't have to buy another Raspberry Pi just to run this).
+**The cost of this project was definitely on the lower side, coming out to around $100 if you don't have all the parts already** (and you probably have a Raspberry Pi already if you're reading this). All you'll need if you already have a Pi is a speaker, which cost anywhere from $15 to $30 for an average speaker. The app in this tutorial was designed to run alongside other processes on a Raspberry Pi, so you could run something like a MagicMirror and this app at the same time if you wanted to (that way, you don't have to buy another Raspberry Pi just to run this).
 
 I only somewhat fulfilled these requirements, but I ended up with an interesting product that might actually have some practical uses apart from the pranking aspect. I've realized that you could also use it like an online jukebox — if you have friends over, they could each individually play and queue different songs using this app and without having to download a separate app (assuming people have Discord on their phones). This also means you don't have to use the same phone to queue songs.
 
@@ -76,13 +76,13 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 
     docker run -p 49160:8080 -v /home/pi/discordbot/media:/usr/src/app/media -d jftorres/armv7ttsapp
 
-        - I've programmed three functions:
-            - !tts
-                - When you use this command, the app will create a text file, which the Pi will read by which creates an .mp3 file from the text and then the script will play the file.
-            - !play
-                - When you use this command, the app will download a Youtube video into an .mp3 file, which a script will then play. Unfortunately, I couldn't figure out a way to validate input, so if somebody requests a 10 hour video, I think it would overload the Pi and/or crash the app
-            - !save
-                - When you use this command, the app will download a Youtube video into an .mp3 file, but not play it. This is just if I want to save any Youtube audio, like some songs that are only on Youtube and not available elsewhere.
+    - I've programmed three functions:
+        - !tts
+            - When you use this command, the app will create a text file, which the Pi will read by which creates an .mp3 file from the text and then the script will play the file.
+        - !play
+            - When you use this command, the app will download a Youtube video into an .mp3 file, which a script will then play. Unfortunately, I couldn't figure out a way to validate input, so if somebody requests a 10 hour video, I think it would overload the Pi and/or crash the app
+        - !save
+            - When you use this command, the app will download a Youtube video into an .mp3 file, but not play it. This is just if I want to save any Youtube audio, like some songs that are only on Youtube and not available elsewhere.
     - Sources:
       - [https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment)
       - [https://nodejs.org/en/](https://nodejs.org/en/docs/)
