@@ -110,6 +110,7 @@ Note: The links for the products are Amazon affiliate links which will help to s
       - `sudo apt install xorg`
       - `sudo apt install matchbox`
       - `sudo apt install unclutter`
+      - `sudo apt install xscreensaver`
 
 {:start="6"}
 6. Create startup scripts
