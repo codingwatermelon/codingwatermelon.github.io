@@ -20,7 +20,7 @@ There were three main goals with this project:
 #### 1. Send audio through to a speaker remotely at all times
 To do this, I knew a Raspberry Pi would be the easiest tool to use to interface with my "command center". The **command center** in this case **would be Discord**, and the **Raspberry Pi would process the commands**, turn them into audio, and output that to a speaker.
 
-*add simple drawing of set up here* (diagram 1)
+![diagram1](/resources/02-DiscordBot/diagram1.png)
 
 I used the DiscordJS module on a NodeJS Docker container running on a Raspberry Pi. The Node app will recognize commands that are received from Discord. The main function of the Node is that send audio files to the Pi from Youtube, but it can also process text to speech.
 
