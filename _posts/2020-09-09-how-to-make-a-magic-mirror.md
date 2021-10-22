@@ -89,7 +89,7 @@ Note: The links for the products are Amazon affiliate links which will help to s
     - Node.JS (old version that is compatible with Pi Zero)
       - `sudo wget https://nodejs.org/dist/v10.16.0/node-v10.16.0-linux-armv6l.tar.xz`
       - `tar xvf node-v10.16.0-linux-armv6l.tar.xz`
-      - `cd node-v8.3.0-linux-armv6l`
+      - `cd node-v10.16.0-linux-armv6l`
       - `sudo cp -R * /usr/local`
       - `sudo reboot`
     - Node Package Manager (used for installing components for MM modules)
