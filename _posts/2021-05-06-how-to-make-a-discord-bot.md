@@ -56,18 +56,21 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 
 ### Instructions
 
+{:start="1"}
 1. Install Docker
     - If you don't know what Docker is, you should watch [this video](https://www.youtube.com/watch?v=Gjnup-PuquQ). It's only 2 minutes, but it provides a lot of important information.
     - Install Docker on your primary computer: [https://docs.docker.com/desktop/](https://docs.docker.com/desktop/)
       - If you've never used Docker, I **HIGHLY** recommend going through the beginner tutorial. Here are [my notes](/resources/02-DiscordBot/dockertutorialnotes.html) from when I went through the Docker tutorial
     - Install Docker on the Raspberry Pi: [https://phoenixnap.com/kb/docker-on-raspberry-pi](https://phoenixnap.com/kb/docker-on-raspberry-pi)
 
+{:start="2"}
 2. Set up a Discord bot on your Discord
     - Use [this guide](https://www.devdungeon.com/content/javascript-discord-bot-tutorial) or [this video tutorial](https://www.youtube.com/watch?v=D2zZG0BUlxk) to set up a Discord bot on your Discord
     - You can skip the steps after the "**Prepare your Node.js project workspace**" section, unless you want to want to learn more about how the bot functions.
       - *(Optional)* If you you want to test what's being shown in that guide past the "Prepare your Node.js project workspace" section, you should do so on either your main computer or a Docker container on your Raspberry Pi rather than the Raspberry Pi itself. This is because we don't want Node.JS to be installed on the Raspberry Pi locally.
         - If you combine the steps from the Devdungeon tutorial above with [this Node tutorial for dockerizing a webapp](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/), you will have the foundation for this project overall.
 
+{:start="3"}
 3. Pull my Docker container
     - For this tutorial, you can just copy what I have. Make sure that if you share your code with others to strip out any sensitive information, like client tokens. Check out my video or see the sources below if you want to learn more about how everything works up to this point.
 
@@ -91,6 +94,7 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 
       TODO Add more content for how to get to this point??
 
+{:start="4"}
 4. Install dependencies
     - I created a script to install the dependencies needed for this project
     {% highlight shell %}
@@ -115,6 +119,7 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
     sudo apt install espeak
     {% endhighlight %}
 
+{:start="5"}
 5. Pull my scripts to process files
 
     - These scripts exist on the Raspberry Pi rather than within the Docker container.
