@@ -71,16 +71,17 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 3. Pull my Docker container
     - For this tutorial, you can just copy what I have. Make sure that if you share your code with others to strip out any sensitive information, like client tokens. Check out my video or see the sources below if you want to learn more about how everything works up to this point.
 
+    {% highlight shell %}
     docker pull jftorres/armv7ttsapp
-
     docker run -p 49160:8080 -v /home/pi/discordbot/media:/usr/src/app/media -d jftorres/armv7ttsapp
+    {% endhighlight %}
 
     - I've programmed three functions:
-        - !tts
+        - /tts
             - When you use this command, the app will create a text file, which the Pi will read by which creates an .mp3 file from the text and then the script will play the file.
-        - !play
+        - /play
             - When you use this command, the app will download a Youtube video into an .mp3 file, which a script will then play. Unfortunately, I couldn't figure out a way to validate input, so if somebody requests a 10 hour video, I think it would overload the Pi and/or crash the app
-        - !save
+        - /save
             - When you use this command, the app will download a Youtube video into an .mp3 file, but not play it. This is just if I want to save any Youtube audio, like some songs that are only on Youtube and not available elsewhere.
     - Sources:
       - [https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment)
@@ -93,19 +94,35 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
       TODO Add more content for how to get to this point??
 
 4. Install dependencies
+    - I created a script to install the dependencies needed for this project
+    {% highlight shell %}
+    # Allow your user to sudo (where "pi" is your user)
+    sudo usermod -aG sudo pi
 
-    (TODO Add content)
+    # Update Raspberry Pi OS and software
+    sudo apt upgrade
+    sudo apt update
+
+    # Get docker install script and run it
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+
+    # Allow the docker user to sudo
+    sudo usermod -aG docker pi
+
+    # Install bot media watchdog tools (used in script 'watchmediadir.sh')
+    sudo apt install inotify-tools
+
+    # Install text-to-speech (TTS) processor
+    sudo apt install espeak
+    {% endhighlight %}
 
 5. Pull my scripts to process files
 
     - These scripts exist on the Raspberry Pi rather than within the Docker container.
     - [This script](insert script) is used to start the Docker container upon reboot.
     - [This script](insert script) is used to monitor a directory for new files created by the app. This will look for .mp3 files created by the !play and !save commands as well as .txt files created by the !tts command and process them accordingly. It will also queue them if people request multiple songs or tts.
-    - These scripts will need to be run automatically, so I made them into systemd services to run upon reboot.
-
-    - (TODO Add section for creating systemd services)
-    - (TODO Add comments to scripts)
-
+    - These scripts will need to be run automatically, so I made cronjob tasks to start them in the morning.
 ---
 
 ### Conclusion
