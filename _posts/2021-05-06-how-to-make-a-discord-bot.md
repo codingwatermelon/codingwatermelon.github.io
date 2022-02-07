@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to make a Discord Bot (using Docker and Raspberry Pi)"
-date: 2021-05-06 22:27:00 -1000
+date: 2022-02-06 21:37:00 -1000
 categories: howto docker raspberrypi node discord
 ---
 
@@ -13,7 +13,13 @@ categories: howto docker raspberrypi node discord
 
 ---
 ### Introduction
-I had an idea one day, stemming from an experience I had at my friend's house involving a bluetooth speaker, Michael Jackson grunting noises (video here), and me being unable to do anything about it. I explain more about that in my video, but let's jump into the tutorial here.
+Hello everybody! Today, I want to show you how you can create your own Discord bot. You can do SO many different things with a Discord bot, and you may find some use out of one even if you don't use Discord! This tutorial specifically will show you how you can make one play music from Youtube and talk to you using text to speech using a combination of Discord, Docker, Node JS, and a Raspberry Pi.
+
+If you're interested in tinkering with Raspberry Pis, creating and configuring your own Discord bot, Linux, Docker virtualization (pretty hard to wrap your head around without actually getting in and trying it out for yourself), and making applications with Node JS, or even if you don't know what any of that is — this is a tutorial that anybody can follow and is a great beginner project to teach you some of the basics for these technologies and what you can do with them.
+
+Today, we're essentially making a smart speaker. Now, I know that some of you may not think much of this concept of a "smart" speaker initially, but just the concept ALONE is pretty cool since you can extend this to basically anything you'd want it to do, all by using Discord as the controller/command interface.
+
+I had an idea one day, stemming from an experience I had at my friend's house involving a bluetooth speaker, [Michael Jackson grunting noises](https://www.youtube.com/watch?v=e62M-5-7ajY), and me being unable to do anything about it. I explain more about that in my video, but let's jump into the tutorial here.
 
 There were three main goals with this project:
 
@@ -61,7 +67,20 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
     - If you don't know what Docker is, you should watch [this video](https://www.youtube.com/watch?v=Gjnup-PuquQ). It's only 2 minutes, but it provides a lot of important information.
     - Install Docker on your primary computer: [https://docs.docker.com/desktop/](https://docs.docker.com/desktop/)
       - If you've never used Docker, I **HIGHLY** recommend going through the beginner tutorial. Here are [my notes](/resources/02-DiscordBot/dockertutorialnotes.html) from when I went through the Docker tutorial
+      - Install WSL (Windows Subsystem for Linux) if you're using Windows and be sure to install the WSL features for Docker
     - Install Docker on the Raspberry Pi: [https://phoenixnap.com/kb/docker-on-raspberry-pi](https://phoenixnap.com/kb/docker-on-raspberry-pi)
+
+    {% highlight shell %}
+    # Get Raspberry Pi installation script from Docker website and run it
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+
+    # Add your main user to the docker group (default raspberry pi user is "pi")
+    sudo usermod -aG docker pi
+
+    # (Optional) Check Docker version
+    sudo docker version
+    {% endhighlight %}
 
 {:start="2"}
 2. Set up a Discord bot on your Discord
@@ -72,7 +91,8 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 
 {:start="3"}
 3. Pull my Docker container
-    - For this tutorial, you can just copy what I have. Make sure that if you share your code with others to strip out any sensitive information, like client tokens. Check out my video or see the sources below if you want to learn more about how everything works up to this point.
+    - For this tutorial, you can just copy what I have. If you'd like to continue building the app by yourself, skip this step and move on to step 4.
+    - Make sure that if you share your code with others to strip out any sensitive information, like client tokens. Check out my video or see the sources below if you want to learn more about how everything works up to this point.
 
     `docker pull jftorres/armv7ttsapp`
     `docker run -p 49160:8080 -v /home/pi/discordbot/media:/usr/src/app/media -d jftorres/armv7ttsapp`
@@ -92,10 +112,15 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
       - [https://www.npmjs.com/package/discord.js](https://www.npmjs.com/package/discord.js)
       - [https://discord.js.org/#/docs/main/stable/general/welcome](https://discord.js.org/#/docs/main/stable/general/welcome)
 
-      TODO Add more content for how to get to this point??
-
 {:start="4"}
-4. Install dependencies
+4. Build the app
+    - Basic Node apps are composed of an application file `app.js` and files to specify dependencies (`package.json` and `package-lock.json`).
+    - I used [this article]() to figure out how to build the Node app
+
+    TODO Add more detail here
+
+{:start="5"}
+5. Install dependencies
     - I created a script to install the dependencies needed for this project
     {% highlight shell %}
     # Allow your user to sudo (where "pi" is your user)
@@ -119,13 +144,13 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
     sudo apt install espeak
     {% endhighlight %}
 
-{:start="5"}
-5. Pull my scripts to process files
-
+{:start="6"}
+6. Create scripts to process files
     - These scripts exist on the Raspberry Pi rather than within the Docker container.
     - [This script](insert script) is used to start the Docker container upon reboot.
     - [This script](insert script) is used to monitor a directory for new files created by the app. This will look for .mp3 files created by the !play and !save commands as well as .txt files created by the !tts command and process them accordingly. It will also queue them if people request multiple songs or tts.
     - These scripts will need to be run automatically, so I made cronjob tasks to start them in the morning.
+
 ---
 
 ### Conclusion
