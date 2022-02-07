@@ -71,10 +71,8 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 3. Pull my Docker container
     - For this tutorial, you can just copy what I have. Make sure that if you share your code with others to strip out any sensitive information, like client tokens. Check out my video or see the sources below if you want to learn more about how everything works up to this point.
 
-    {% highlight shell %}
-    docker pull jftorres/armv7ttsapp
-    docker run -p 49160:8080 -v /home/pi/discordbot/media:/usr/src/app/media -d jftorres/armv7ttsapp
-    {% endhighlight %}
+    `docker pull jftorres/armv7ttsapp`
+    `docker run -p 49160:8080 -v /home/pi/discordbot/media:/usr/src/app/media -d jftorres/armv7ttsapp`
 
     - I've programmed three functions:
         - /tts
