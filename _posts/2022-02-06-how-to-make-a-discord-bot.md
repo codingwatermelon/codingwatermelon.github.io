@@ -12,6 +12,12 @@ categories: howto docker raspberrypi node discord
 *embed video here*
 
 ---
+### Preliminary Notes
+    - For any linked scripts, make sure to take off the .txt extension if you're going to run them on your machine
+      - All scripts:
+          - []()
+
+---
 ### Introduction
 Hello everybody! Today, I want to show you how you can create your own Discord bot. You can do SO many different things with a Discord bot, and you may find some use out of one even if you don't use Discord! This tutorial specifically will show you how you can make one play music from Youtube and talk to you using text to speech using a combination of Discord, Docker, Node JS, and a Raspberry Pi.
 
@@ -150,8 +156,9 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 6. **Create scripts to process files**
     - These scripts exist on the Raspberry Pi rather than within the Docker container.
     - [This script](insert script) is used to start the Docker container upon reboot.
-    - [This script](insert script) is used to monitor a directory for new files created by the app. This will look for .mp3 files created by the !play and !save commands as well as .txt files created by the !tts command and process them accordingly. It will also queue them if people request multiple songs or tts.
+    - [This script](insert script) is used to monitor a directory for new files created by the app. This will look for .mp3 files created by the /play and /save commands as well as .txt files created by the /tts command and process them accordingly. It will also queue them if people request multiple songs or tts.
     - These scripts will need to be run automatically, so I made cronjob tasks to start them in the morning.
+        - See [this site](https://crontab.guru/) to help configure your cronjobs
 
 ---
 
