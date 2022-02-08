@@ -42,7 +42,7 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 
 ---
 
-### Requirements
+### Requirements ([videolink](00:34))
 
 - A computer to connect to the Pi and configure the app
 - [Chargeable speaker with 3.5mm jack input](https://www.amazon.com/s?k=speaker+with+3.5mm+audio+input&ref=nb_sb_noss)
@@ -94,15 +94,6 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
     - Basic Node apps are composed of an application file `app.js` and files to specify dependencies (`package.json` and `package-lock.json`).
     - See files here [app.js](), [package.json]() (note: package-lock.json has to be generated on your machine (see video at 00:00))
     - I used [this article](https://www.devdungeon.com/content/javascript-discord-bot-tutorial) to figure out how to build the Node app
-
-{:start="4"}
-4. Set up the Docker container
-    - I used [this article](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/) to figure out how to 'Dockerize' the Node app
-    - Make sure that if you share your code with others to strip out any sensitive information, like client tokens. Check out my video or see the sources below if you want to learn more about how everything works up to this point.
-
-    `docker pull jftorres/armv7ttsapp`
-    `docker run -p 49160:8080 -v /home/pi/discordbot/media:/usr/src/app/media -d jftorres/armv7ttsapp`
-
     - I've programmed three functions:
         - /tts
             - When you use this command, the app will create a text file, which the Pi will read by which creates an .mp3 file from the text and then the script will play the file.
@@ -117,6 +108,18 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
       - [https://hub.docker.com/r/arm32v7/node/](https://hub.docker.com/r/arm32v7/node/)
       - [https://www.npmjs.com/package/discord.js](https://www.npmjs.com/package/discord.js)
       - [https://discord.js.org/#/docs/main/stable/general/welcome](https://discord.js.org/#/docs/main/stable/general/welcome)
+
+{:start="4"}
+4. Set up the Docker image and container
+    - I used [this article](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/) to figure out how to 'Dockerize' the Node app
+    - Make sure that if you share your code with others to strip out any sensitive information, like client tokens. Check out my video or see the sources below if you want to learn more about how everything works up to this point.
+    - If you'd like to copy the app that I built, you can use these commands (substitute the first part of the directory in `-v` before the `:` accordingly) and then skip to step 5:
+        - `docker pull jftorres/armv7ttsapp`
+        - `docker run -p 49160:8080 -v /home/pi/discordbot/media:/usr/src/app/media -d jftorres/armv7ttsapp`
+   - If you'd like to build the image, you need to create a Dockerfile (see mine as an example).
+   - Once all the files are created (shown in image below), run the `docker build` command:
+   ![dockerbuild](/resources/02-DiscordBot/dockerbuild.png)
+
 
 {:start="5"}
 5. Install dependencies
