@@ -13,9 +13,17 @@ categories: howto docker raspberrypi node discord
 
 ---
 ### Preliminary Notes
-- For any linked scripts, make sure to take off the .txt extension if you're going to run them on your machine
-    - All scripts:
-        - []()
+- Main application files
+    - [app.js](https://github.com/codingwatermelon/ttsapp/blob/main/app.js)
+    - [package.json](https://github.com/codingwatermelon/ttsapp/blob/main/package.json)
+    - [package-lock.json](https://github.com/codingwatermelon/ttsapp/blob/main/package-lock.json)
+- Docker files
+    - [Dockerfile](https://github.com/codingwatermelon/ttsapp/blob/main/Dockerfile)
+- All scripts ([on my Github](https://github.com/codingwatermelon/ttsapp)):
+    - [Script to prepare Raspberry Pi for bot install](https://github.com/codingwatermelon/ttsapp/blob/main/getdependencies.sh)
+    - [Script to build the bot](https://github.com/codingwatermelon/ttsapp/blob/main/buildbot.sh)
+    - [Script to restart the bot](https://github.com/codingwatermelon/ttsapp/blob/main/restartbot.sh)
+    - [Script to process media files](https://github.com/codingwatermelon/ttsapp/blob/main/watchmediadir.sh)
 
 ---
 ### Introduction
@@ -122,7 +130,7 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
     - If you'd like to copy the app that I built, you can use these commands (substitute the first part of the directory in `-v` before the `:` accordingly) and then skip to step 5:
         - `docker pull jftorres/armv7ttsapp`
         - `docker run -p 49160:8080 -v /home/pi/discordbot/media:/usr/src/app/media -d jftorres/armv7ttsapp`
-   - If you'd like to build the image yourself, you need to create a Dockerfile (see mine as an example).
+   - If you'd like to build the image yourself, you need to create a Dockerfile (see [mine]() as an example).
    - Once all the files are created (shown in image below), run the `docker build` command (substitute Docker image name accordingly):
    ![dockerbuild](/resources/02-DiscordBot/dockerbuild.png)
 
@@ -155,16 +163,16 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 {:start="6"}
 6. **Create scripts to process files**
     - These scripts exist on the Raspberry Pi rather than within the Docker container.
-        - [This script](insert script) is used to start the Docker container upon reboot.
-        - [This script](insert script) is used to monitor a directory for new files created by the app. This will look for .mp3 files created by the /play and /save commands as well as .txt files created by the /tts command and process them accordingly. It will also queue them if people request multiple songs or tts.
+        - [This script](https://github.com/codingwatermelon/ttsapp/blob/main/restartbot.sh) is used to start the Docker container upon reboot.
+        - [This script](https://github.com/codingwatermelon/ttsapp/blob/main/watchmediadir.sh) is used to monitor a directory for new files created by the app. This will look for .mp3 files created by the /play and /save commands as well as .txt files created by the /tts command and process them accordingly. It will also queue them if people request multiple songs or tts.
     - These scripts will need to be run automatically, so I made cronjob tasks to start them in the morning.
         - See [this site](https://crontab.guru/) to help configure your cronjobs
 
 {:start="7"}
 7. (Optional) **Create scripts to help with building**
     - These scripts aren't necessary but definitely help with operations and maintenance of the app
-      - Use this script to build the bot (helps to host app files on Github)
-      - Use this script to 
+      - Use [this script](https://github.com/codingwatermelon/ttsapp/blob/main/buildbot.sh) to build the bot (helps to host app files on Github, but not necessary)
+      - Use [this script](https://github.com/codingwatermelon/ttsapp/blob/main/restartbot.sh) to adhoc restart the bot
 
 ---
 
@@ -214,7 +222,7 @@ This section contains the high level overview of the process I took to create th
 8. Create scripts to find audio files
 
 9. Create startup scripts
-    - Create systemd systemctl service to start scripts upon boot
+    - Create cronjobs to start the app automatically
 
 ---
 
