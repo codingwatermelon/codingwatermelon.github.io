@@ -63,7 +63,7 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 ### Instructions
 
 {:start="1"}
-**1. Install Docker**
+1. **Install Docker**
     - If you don't know what Docker is, you should watch [this video](https://www.youtube.com/watch?v=Gjnup-PuquQ). It's only 2 minutes, but it provides a lot of important information.
     - Install Docker on your primary computer: [https://docs.docker.com/desktop/](https://docs.docker.com/desktop/)
       - If you've never used Docker, I **HIGHLY** recommend going through the beginner tutorial. Here are [my notes](/resources/02-DiscordBot/dockertutorialnotes.html) from when I went through the Docker tutorial
@@ -83,13 +83,13 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
     {% endhighlight %}
 
 {:start="2"}
-**2. Set up a Discord bot on your Discord**
+2. **Set up a Discord bot on your Discord**
     - Use [this guide](https://www.devdungeon.com/content/javascript-discord-bot-tutorial) or [this video tutorial](https://www.youtube.com/watch?v=D2zZG0BUlxk) to set up a Discord bot on your Discord
     - You can skip the steps after the "**Prepare your Node.js project workspace**" section, unless you want to want to learn more about how the bot functions.
       - *(Optional)* If you you want to test what's being shown in that guide past the "Prepare your Node.js project workspace" section, you should do so on either your main computer or a Docker container on your Raspberry Pi rather than the Raspberry Pi itself. This is because we don't want Node.JS to be installed on the Raspberry Pi locally.
 
 {:start="3"}
-**3. Build the app**
+3. **Build the app**
     - For this tutorial, you can just copy what I have. If you'd like to copy the app that I built, skip this step and move on to step 4.
     - Basic Node apps are composed of an application file `app.js` and files to specify dependencies (`package.json` and `package-lock.json`).
     - See files here [app.js](), [package.json]() (note: package-lock.json has to be generated on your machine (see video at 00:00))
@@ -110,19 +110,19 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
       - [https://discord.js.org/#/docs/main/stable/general/welcome](https://discord.js.org/#/docs/main/stable/general/welcome)
 
 {:start="4"}
-**4. Set up the Docker image and container**
+4. **Set up the Docker image and container**
     - I used [this article](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/) to figure out how to 'Dockerize' the Node app
     - Make sure that if you share your code with others to strip out any sensitive information, like client tokens. Check out my video or see the sources below if you want to learn more about how everything works up to this point.
     - If you'd like to copy the app that I built, you can use these commands (substitute the first part of the directory in `-v` before the `:` accordingly) and then skip to step 5:
         - `docker pull jftorres/armv7ttsapp`
         - `docker run -p 49160:8080 -v /home/pi/discordbot/media:/usr/src/app/media -d jftorres/armv7ttsapp`
-   - If you'd like to build the image, you need to create a Dockerfile (see mine as an example).
-   - Once all the files are created (shown in image below), run the `docker build` command:
+   - If you'd like to build the image yourself, you need to create a Dockerfile (see mine as an example).
+   - Once all the files are created (shown in image below), run the `docker build` command (substitute Docker image name accordingly):
    ![dockerbuild](/resources/02-DiscordBot/dockerbuild.png)
 
 
 {:start="5"}
-**5. Install dependencies**
+5. **Install dependencies**
     - I created a script to install the dependencies needed for this project
     {% highlight shell %}
     # Allow your user to sudo (where "pi" is your user)
@@ -147,7 +147,7 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
     {% endhighlight %}
 
 {:start="6"}
-**6. Create scripts to process files**
+6. **Create scripts to process files**
     - These scripts exist on the Raspberry Pi rather than within the Docker container.
     - [This script](insert script) is used to start the Docker container upon reboot.
     - [This script](insert script) is used to monitor a directory for new files created by the app. This will look for .mp3 files created by the !play and !save commands as well as .txt files created by the !tts command and process them accordingly. It will also queue them if people request multiple songs or tts.
