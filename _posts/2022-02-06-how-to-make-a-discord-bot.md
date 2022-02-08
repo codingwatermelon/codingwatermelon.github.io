@@ -87,7 +87,6 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
     - Use [this guide](https://www.devdungeon.com/content/javascript-discord-bot-tutorial) or [this video tutorial](https://www.youtube.com/watch?v=D2zZG0BUlxk) to set up a Discord bot on your Discord
     - You can skip the steps after the "**Prepare your Node.js project workspace**" section, unless you want to want to learn more about how the bot functions.
       - *(Optional)* If you you want to test what's being shown in that guide past the "Prepare your Node.js project workspace" section, you should do so on either your main computer or a Docker container on your Raspberry Pi rather than the Raspberry Pi itself. This is because we don't want Node.JS to be installed on the Raspberry Pi locally.
-        - If you combine the steps from the Devdungeon tutorial above with [this Node tutorial for dockerizing a webapp](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/), you will have the foundation for this project overall.
 
 {:start="3"}
 3. Build the app
