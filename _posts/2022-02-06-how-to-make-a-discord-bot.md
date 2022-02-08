@@ -13,9 +13,9 @@ categories: howto docker raspberrypi node discord
 
 ---
 ### Preliminary Notes
-    - For any linked scripts, make sure to take off the .txt extension if you're going to run them on your machine
-      - All scripts:
-          - []()
+- For any linked scripts, make sure to take off the .txt extension if you're going to run them on your machine
+    - All scripts:
+        - []()
 
 ---
 ### Introduction
@@ -155,10 +155,16 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 {:start="6"}
 6. **Create scripts to process files**
     - These scripts exist on the Raspberry Pi rather than within the Docker container.
-    - [This script](insert script) is used to start the Docker container upon reboot.
-    - [This script](insert script) is used to monitor a directory for new files created by the app. This will look for .mp3 files created by the /play and /save commands as well as .txt files created by the /tts command and process them accordingly. It will also queue them if people request multiple songs or tts.
+        - [This script](insert script) is used to start the Docker container upon reboot.
+        - [This script](insert script) is used to monitor a directory for new files created by the app. This will look for .mp3 files created by the /play and /save commands as well as .txt files created by the /tts command and process them accordingly. It will also queue them if people request multiple songs or tts.
     - These scripts will need to be run automatically, so I made cronjob tasks to start them in the morning.
         - See [this site](https://crontab.guru/) to help configure your cronjobs
+
+{:start="7"}
+7. (Optional) **Create scripts to help with building**
+    - These scripts aren't necessary but definitely help with operations and maintenance of the app
+      - Use this script to build the bot (helps to host app files on Github)
+      - Use this script to 
 
 ---
 
