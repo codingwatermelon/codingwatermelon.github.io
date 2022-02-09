@@ -108,7 +108,9 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
     - Basic Node apps are composed of an application file `app.js` and files to specify dependencies (`package.json` and `package-lock.json`).
     - See files here [app.js](), [package.json]() (note: package-lock.json has to be generated on your machine (see video at 00:00))
     - You also have to register the commands that your app uses by contacting the Discord API as described in [this guide](https://discordjs.guide/creating-your-bot/creating-commands.html#command-deployment-script) (see video at 00:00)
+        - Example [deploy-commands.js](https://github.com/codingwatermelon/ttsapp/blob/main/deploy-commands.js) file
         - Note: You will have to rerun these commands every time you make additions or edits to your commands in your bot
+
     - I used [this article](https://www.devdungeon.com/content/javascript-discord-bot-tutorial) to figure out how to build the Node app
     - I've programmed three functions:
         - /tts
