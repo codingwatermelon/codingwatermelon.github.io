@@ -84,8 +84,8 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
       - Install WSL (Windows Subsystem for Linux) if you're using Windows and be sure to install the WSL features for Docker
     - Install Docker on the Raspberry Pi: [https://phoenixnap.com/kb/docker-on-raspberry-pi](https://phoenixnap.com/kb/docker-on-raspberry-pi)
 
-    **Install Docker**
     {% highlight shell %}
+    ### Install Docker ###
     # Get Raspberry Pi installation script from Docker website and run it
     curl -fsSL https://get.docker.com -o get-docker.sh
     sudo sh get-docker.sh
@@ -95,11 +95,8 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 
     # (Optional) Check Docker version
     sudo docker version
-    {% endhighlight %}
 
-    **Install other dependencies**
-    {% highlight shell %}
-
+    ### Install other dependencies ###
     # Update Raspberry Pi OS and software
     sudo apt upgrade
     sudo apt update
