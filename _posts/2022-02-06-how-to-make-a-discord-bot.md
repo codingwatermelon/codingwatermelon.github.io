@@ -26,7 +26,7 @@ categories: howto docker raspberrypi node discord
     - [Script to process media files](https://github.com/codingwatermelon/ttsapp/blob/main/watchmediadir.sh)
 
 ---
-### Introduction
+### Introduction ([00:00](https://youtu.be/47houX0auhM))
 Hello everybody! Today, I want to show you how you can create your own Discord bot. You can do SO many different things with a Discord bot, and you may find some use out of one even if you don't use Discord! This tutorial specifically will show you how you can make one play music from Youtube and talk to you using text to speech using a combination of Discord, Docker, Node JS, and a Raspberry Pi.
 
 If you're interested in tinkering with Raspberry Pis, creating and configuring your own Discord bot, Linux, Docker virtualization (pretty hard to wrap your head around without actually getting in and trying it out for yourself), and making applications with Node JS, or even if you don't know what any of that is — this is a tutorial that anybody can follow and is a great beginner project to teach you some of the basics for these technologies and what you can do with them.
@@ -56,7 +56,7 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 
 ---
 
-### Requirements ([videolink](00:34))
+### Requirements ([08:05](https://youtu.be/47houX0auhM?t=485))
 
 - A computer to connect to the Pi and configure the app
 - [Chargeable speaker with 3.5mm jack input](https://www.amazon.com/s?k=speaker+with+3.5mm+audio+input&ref=nb_sb_noss)
@@ -74,16 +74,17 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
 
 ---
 
-### Instructions
+### Instructions ([09:41](https://youtu.be/47houX0auhM?t=581))
 
 {:start="1"}
-1. **Install Docker**
+1. **Install Docker and dependencies** ([09:41](https://youtu.be/47houX0auhM?t=581))
     - If you don't know what Docker is, you should watch [this video](https://www.youtube.com/watch?v=Gjnup-PuquQ). It's only 2 minutes, but it provides a lot of important information.
     - Install Docker on your primary computer: [https://docs.docker.com/desktop/](https://docs.docker.com/desktop/)
       - If you've never used Docker, I **HIGHLY** recommend going through the beginner tutorial. Here are [my notes](/resources/02-DiscordBot/dockertutorialnotes.html) from when I went through the Docker tutorial
       - Install WSL (Windows Subsystem for Linux) if you're using Windows and be sure to install the WSL features for Docker
     - Install Docker on the Raspberry Pi: [https://phoenixnap.com/kb/docker-on-raspberry-pi](https://phoenixnap.com/kb/docker-on-raspberry-pi)
 
+    **Install Docker**
     {% highlight shell %}
     # Get Raspberry Pi installation script from Docker website and run it
     curl -fsSL https://get.docker.com -o get-docker.sh
@@ -96,14 +97,28 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
     sudo docker version
     {% endhighlight %}
 
+    **Install other dependencies**
+    {% highlight shell %}
+
+    # Update Raspberry Pi OS and software
+    sudo apt upgrade
+    sudo apt update
+
+    # Install bot media watchdog tools (used in script 'watchmediadir.sh')
+    sudo apt install inotify-tools
+
+    # Install text-to-speech (TTS) processor
+    sudo apt install espeak
+    {% endhighlight %}
+
 {:start="2"}
-2. **Set up a Discord bot on your Discord**
+2. **Set up a Discord bot on your Discord** ([10:27](https://youtu.be/47houX0auhM?t=627))
     - Use [this guide](https://www.devdungeon.com/content/javascript-discord-bot-tutorial) or [this video tutorial](https://www.youtube.com/watch?v=D2zZG0BUlxk) to set up a Discord bot on your Discord
     - You can skip the steps after the "**Prepare your Node.js project workspace**" section, unless you want to want to learn more about how the bot functions.
       - *(Optional)* If you you want to test what's being shown in that guide past the "Prepare your Node.js project workspace" section, you should do so on either your main computer or a Docker container on your Raspberry Pi rather than the Raspberry Pi itself. This is because we don't want Node.JS to be installed on the Raspberry Pi locally.
 
 {:start="3"}
-3. **Build the app**
+3. **Build the app** ([11:08](https://youtu.be/47houX0auhM?t=668))
     - For this tutorial, you can just copy what I have. If you'd like to copy the app that I built, skip this step and move on to step 4.
     - Basic Node apps are composed of an application file `app.js` and files to specify dependencies (`package.json` and `package-lock.json`).
     - See files here [app.js](), [package.json]() (note: package-lock.json has to be generated on your machine (see video at 00:00))
@@ -128,7 +143,7 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
       - [https://discord.js.org/#/docs/main/stable/general/welcome](https://discord.js.org/#/docs/main/stable/general/welcome)
 
 {:start="4"}
-4. **Set up the Docker image and container**
+4. **Set up the Docker image and container** ([12:27](https://youtu.be/47houX0auhM?t=748))
     - I used [this article](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/) to figure out how to 'Dockerize' the Node app
     - Make sure that if you share your code with others to strip out any sensitive information, like client tokens. Check out my video or see the sources below if you want to learn more about how everything works up to this point.
     - If you'd like to copy the app that I built, you can use these commands (substitute the first part of the directory in `-v` before the `:` accordingly) and then skip to step 5:
@@ -138,34 +153,8 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
    - Once all the files are created (shown in image below), run the `docker build` command (substitute Docker image name accordingly):
    ![dockerbuild](/resources/02-DiscordBot/dockerbuild.png)
 
-
-{:start="5"}
-5. **Install dependencies**
-    - I created a script to install the dependencies needed for this project
-    {% highlight shell %}
-    # Allow your user to sudo (where "pi" is your user)
-    sudo usermod -aG sudo pi
-
-    # Update Raspberry Pi OS and software
-    sudo apt upgrade
-    sudo apt update
-
-    # Get docker install script and run it
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh get-docker.sh
-
-    # Allow the docker user to sudo
-    sudo usermod -aG docker pi
-
-    # Install bot media watchdog tools (used in script 'watchmediadir.sh')
-    sudo apt install inotify-tools
-
-    # Install text-to-speech (TTS) processor
-    sudo apt install espeak
-    {% endhighlight %}
-
 {:start="6"}
-6. **Create scripts to process files**
+6. **Create scripts to process files** ([18:43](https://youtu.be/47houX0auhM?t=1123))
     - These scripts exist on the Raspberry Pi rather than within the Docker container.
         - [This script](https://github.com/codingwatermelon/ttsapp/blob/main/restartbot.sh) is used to start the Docker container upon reboot.
         - [This script](https://github.com/codingwatermelon/ttsapp/blob/main/watchmediadir.sh) is used to monitor a directory for new files created by the app. This will look for .mp3 files created by the /play and /save commands as well as .txt files created by the /tts command and process them accordingly. It will also queue them if people request multiple songs or tts.
@@ -173,7 +162,7 @@ It's a relatively simple bot that can definitely be expanded to do more stuff. A
         - See [this site](https://crontab.guru/) to help configure your cronjobs
 
 {:start="7"}
-7. (Optional) **Create scripts to help with building**
+7. (Optional) **Create scripts to help with building** ([20:32](https://youtu.be/47houX0auhM?t=1232))
     - These scripts aren't necessary but definitely help with operations and maintenance of the app
       - Use [this script](https://github.com/codingwatermelon/ttsapp/blob/main/buildbot.sh) to build the bot (helps to host app files on Github, but not necessary)
       - Use [this script](https://github.com/codingwatermelon/ttsapp/blob/main/restartbot.sh) to adhoc restart the bot
