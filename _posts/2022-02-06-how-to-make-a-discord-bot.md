@@ -9,7 +9,7 @@ categories: howto docker raspberrypi node discord
 ### Estimated time to complete
 **1-2 hours**
 
-*embed video here*
+<iframe width="560" height="315" src="https://www.youtube.com/embed/47houX0auhM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 ### Preliminary Notes
