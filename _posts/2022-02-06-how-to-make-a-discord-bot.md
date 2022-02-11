@@ -6,13 +6,13 @@ categories: howto docker raspberrypi node discord
 ---
 
 ---
-### Estimated time to complete
-**1-2 hours**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/47houX0auhM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 ### Preliminary Notes
+- Estimated time to complete
+    - **1-2 hours**
 - Main application files
     - [app.js](https://github.com/codingwatermelon/ttsapp/blob/main/app.js)
     - [package.json](https://github.com/codingwatermelon/ttsapp/blob/main/package.json)
