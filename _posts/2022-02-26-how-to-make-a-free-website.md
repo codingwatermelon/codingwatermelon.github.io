@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "How to make a free website"
-date: 2020-02-26 13:32:40 -1000
+title: "How to make a free website using Github Pages"
+date: 2022-02-26 13:32:40 -1000
 categories: howto
 ---
 
