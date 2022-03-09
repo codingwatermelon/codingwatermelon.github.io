@@ -2,24 +2,21 @@
 layout: post
 title: "How to make a free website using Github Pages"
 date: 2022-02-26 13:32:40 -1000
-categories: howto
+categories: howto, webdev
 ---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/J42rPZZiqQE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 ### Preliminary Notes
 - Estimated time to complete
     - **1-2 hours**
-- Main application files
-    - [app.js](https://github.com/codingwatermelon/ttsapp/blob/main/app.js)
-    - [package.json](https://github.com/codingwatermelon/ttsapp/blob/main/package.json)
-    - [package-lock.json](https://github.com/codingwatermelon/ttsapp/blob/main/package-lock.json)
-- Docker files
-    - [Dockerfile](https://github.com/codingwatermelon/ttsapp/blob/main/Dockerfile)
-- All scripts ([on my Github](https://github.com/codingwatermelon/ttsapp)):
-    - [Script to prepare Raspberry Pi for bot install](https://github.com/codingwatermelon/ttsapp/blob/main/getdependencies.sh)
-    - [Script to build the bot](https://github.com/codingwatermelon/ttsapp/blob/main/buildbot.sh)
-    - [Script to restart the bot](https://github.com/codingwatermelon/ttsapp/blob/main/restartbot.sh)
-    - [Script to process media files](https://github.com/codingwatermelon/ttsapp/blob/main/watchmediadir.sh)
+- Documentation
+    - [Minima template documentation](https://github.com/jekyll/minima)
+    - [Gridster template documentation](https://ickc.github.io/gridster-jekyll-theme/)
+- My repository
+    - [artist portfolio site](https://jessacruz.github.io/)
+    - [artist portfolio repository](https://github.com/jessacruz/jessacruz.github.io)
 
 ---
 
@@ -73,7 +70,6 @@ Sources:
 {:start="2"}
 2. Setup Github repository
     - Now, we’re going to set up the Github repository. This is where your site is going to be hosted. You will have to name it your github name.github.io. Once that’s done, we’ll make a new directory for the project in WSL and then clone into the repository, then create a new jekyll site. This part may take some time, and as you can see I had some permissions errors when I was building mine. If you don’t know much about Linux permissions, they’re pretty simple, and I’d recommend you read/watch this (TODO).
-
 {% highlight shell %}
     jekyll new --skip-bundle .
 
@@ -90,7 +86,6 @@ Sources:
 
     bundle install
 {% endhighlight %}
-
     - After that’s done, edit the `_config.yml` and add some of your info. This file contains some of the front facing site configurations.
     - You’re going to need to set up an authorization token to push your site up to Github, which you can read more about why this is necessary at this blog post [https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/). It basically is a way to authenticate yourself as the owner or authorized editor of your project without having to use your password. To do this, follow these steps (TODO). Save this for later in a text file, but don’t worry if you lose it because you can generate a new one using the same steps.
     - Now, push your edits up to Github using these commands
